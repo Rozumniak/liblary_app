@@ -129,6 +129,12 @@ def get_unique_genres():
     genres = [genre[0] for genre in cursor.fetchall()]
     return genres
 
+def addNewBook(name, title, genre, number):
+    print('1')
+    cursor.execute('INSERT INTO books (author, book_title, genre, available) VALUES (?,?,?, ?)', (name, title, genre, number,))
+    connection_library.commit()
+    return True
+
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
                     worker_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -150,7 +156,7 @@ def search_worker(login, password):
     worker = cursor.fetchall()
     return worker
 
-cursor.execute('''DROP TABLE visitors''')
+# cursor.execute('''DROP TABLE visitors''')
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS visitors (
                     visitor_id INTEGER PRIMARY KEY AUTOINCREMENT,

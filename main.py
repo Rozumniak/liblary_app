@@ -5,9 +5,11 @@ from booksearch_design import Ui_Booksearch
 from visitors_design import Ui_Visitorssearch
 from new_visitor_design import Ui_NewVisitor
 from giveBook_design import Ui_giveBook
+from new_book_design import Ui_NewBook
 
 from database import (search_by_author, search_by_id, search_worker, search_by_title, get_unique_genres, search_by_genre,
-                      search_visitor, give_book_to_visitor, remove_book_from_visitor, searchVisitorById, addVisitor, returnBook)
+                      search_visitor, give_book_to_visitor, remove_book_from_visitor, searchVisitorById, addVisitor, returnBook,
+                      addNewBook)
 
 import sys
 from PyQt6 import QtWidgets, QtCore, QtGui
@@ -55,10 +57,13 @@ class Booksearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Booksearch):
         self.title_radio.setChecked(True)
         genres = get_unique_genres()
         self.genre_combo.addItems(genres)
-
         self.genre_combo.currentIndexChanged.connect(self.genre_search)
-
         self.search_button.clicked.connect(self.search_button_clicked)
+        self.add_book_button.clicked.connect(self.addBookClicked)
+
+    def addBookClicked(self):
+        self.addBook = AddNewBook()
+        self.addBook.show()
 
     def genre_search(self):
         self.scrollAreaWidgetContents.deleteLater()
@@ -210,6 +215,25 @@ class Booksearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Booksearch):
             self.label_layout.addWidget(self.give_book)
             self.labels_layout.addWidget(self.label)
             self.labels_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
+
+class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.register_button.clicked.connect(self.addNewBook)
+
+    def addNewBook(self):
+        name = self.name.text()
+        title = self.title.text()
+        genre = self.genre.text()
+        number = int(self.number.text())
+        addBook = addNewBook(name, title, genre, number)
+        if addBook:
+            self.close()
+
+
+
+
 
 class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
     def __init__(self, book_id):

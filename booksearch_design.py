@@ -29,7 +29,7 @@ class Ui_Booksearch(object):
         self.search_button.setStyleSheet("border-radius: 10px;\n"
 "border-color: rgb(0, 0, 0);\n"
 "background-color: rgb(164, 201, 255);\n"
-"font: 10pt \"Arial\";\n"
+"font: 12pt \"Arial\";\n"
 "")
         self.search_button.setObjectName("search_button")
         self.books_button = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -59,34 +59,32 @@ class Ui_Booksearch(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.label_4 = QtWidgets.QLabel(parent=self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(390, 70, 81, 21))
-        self.label_4.setStyleSheet("font: 10pt \"Arial\";\n"
-"\n"
-"width: 130px;")
+        self.label_4.setGeometry(QtCore.QRect(390, 70, 120, 21))
+        self.label_4.setStyleSheet("font: 14pt \"Arial\";")
         self.label_4.setObjectName("label_4")
         self.layoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(250, 110, 401, 79))
+        self.layoutWidget.setGeometry(QtCore.QRect(250, 110, 401, 88))
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.label_3 = QtWidgets.QLabel(parent=self.layoutWidget)
-        self.label_3.setStyleSheet("font: 10pt \"Arial\";")
+        self.label_3.setStyleSheet("font: 14pt \"Arial\";")
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 0, 1, 1, 1)
         self.title_radio = QtWidgets.QRadioButton(parent=self.layoutWidget)
-        self.title_radio.setStyleSheet("font: 10pt \"Arial\";")
+        self.title_radio.setStyleSheet("font: 14pt \"Arial\";")
         self.title_radio.setObjectName("title_radio")
         self.gridLayout.addWidget(self.title_radio, 1, 0, 1, 1)
         self.genre_combo = QtWidgets.QComboBox(parent=self.layoutWidget)
         self.genre_combo.setStyleSheet("border-radius: 10px;\n"
-"font: 10pt \"Arial\";\n"
+"font: 14pt \"Arial\";\n"
 "border: 2px solid rgb(164, 201, 255);\n"
 "background-color: white;")
         self.genre_combo.setObjectName("genre_combo")
         self.gridLayout.addWidget(self.genre_combo, 1, 1, 2, 1)
         self.author_radio = QtWidgets.QRadioButton(parent=self.layoutWidget)
-        self.author_radio.setStyleSheet("font: 10pt \"Arial\";")
+        self.author_radio.setStyleSheet("font: 14pt \"Arial\";")
         self.author_radio.setObjectName("author_radio")
         self.gridLayout.addWidget(self.author_radio, 2, 0, 1, 1)
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
@@ -95,6 +93,14 @@ class Ui_Booksearch(object):
         self.label.setPixmap(QtGui.QPixmap("Designer-removebg-preview.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
+        self.add_book_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.add_book_button.setGeometry(QtCore.QRect(850, 25, 110, 35))
+        self.add_book_button.setStyleSheet("border-radius: 10px;\n"
+"border-color: rgb(0, 0, 0);\n"
+"background-color: rgb(164, 201, 255);\n"
+"font: 12pt \"Arial\";\n"
+"")
+        self.add_book_button.setObjectName("add_book_button")
         Booksearch.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Booksearch)
@@ -111,3 +117,4 @@ class Ui_Booksearch(object):
         self.label_3.setText(_translate("Booksearch", "Жанри"))
         self.title_radio.setText(_translate("Booksearch", "Назва"))
         self.author_radio.setText(_translate("Booksearch", "Автор"))
+        self.add_book_button.setText(_translate("Booksearch", "Додати книгу"))
