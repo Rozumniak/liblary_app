@@ -141,9 +141,9 @@ padding 5px;
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>110</y>
-      <width>401</width>
+      <x>210</x>
+      <y>100</y>
+      <width>481</width>
       <height>88</height>
      </rect>
     </property>

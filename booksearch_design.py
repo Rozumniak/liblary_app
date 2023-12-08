@@ -63,7 +63,7 @@ class Ui_Booksearch(object):
         self.label_4.setStyleSheet("font: 14pt \"Arial\";")
         self.label_4.setObjectName("label_4")
         self.layoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(250, 110, 401, 88))
+        self.layoutWidget.setGeometry(QtCore.QRect(210, 100, 481, 88))
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)

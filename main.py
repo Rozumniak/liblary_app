@@ -231,10 +231,6 @@ class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
         if addBook:
             self.close()
 
-
-
-
-
 class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
     def __init__(self, book_id):
         super().__init__()
@@ -310,7 +306,8 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
         self.books_button.clicked.connect(self.booksClicked)
         self.register_button.clicked.connect(self.registerClicked)
         self.search_button.clicked.connect(self.searchButtonClicked)
-        self.searchButtonClicked()
+        # self.searchButtonClicked()
+        widget.currentChanged.connect(self.searchButtonClicked)
 
         # self.scrollAreaWidgetContents.deleteLater()
         # self.scrollAreaWidgetContents = QtWidgets.QWidget()
@@ -396,6 +393,7 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
 
 
     def searchButtonClicked(self):
+        print('click')
         self.scrollAreaWidgetContents.deleteLater()
         visitor = search_visitor(self.name.text())
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
@@ -446,6 +444,7 @@ class NewVisitor(QtWidgets.QWidget, QtCore.QObject, Ui_NewVisitor):
 
     def registerClicked(self):
         addVisitor(self.secondName.text(), self.firstName.text(), self.dateEdit.text())
+        VisitorsSearch().searchButtonClicked()
         self.close()
 
 

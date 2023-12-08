@@ -130,7 +130,6 @@ def get_unique_genres():
     return genres
 
 def addNewBook(name, title, genre, number):
-    print('1')
     cursor.execute('INSERT INTO books (author, book_title, genre, available) VALUES (?,?,?, ?)', (name, title, genre, number,))
     connection_library.commit()
     return True
