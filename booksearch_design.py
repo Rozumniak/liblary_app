@@ -17,9 +17,9 @@ class Ui_Booksearch(object):
         self.centralwidget = QtWidgets.QWidget(parent=Booksearch)
         self.centralwidget.setObjectName("centralwidget")
         self.search_input = QtWidgets.QLineEdit(parent=self.centralwidget)
-        self.search_input.setGeometry(QtCore.QRect(190, 29, 510, 30))
+        self.search_input.setGeometry(QtCore.QRect(190, 29, 510, 35))
         self.search_input.setStyleSheet("border-radius: 10px;\n"
-"font: 10pt \"Arial\";\n"
+"font: 14pt \"Arial\";\n"
 "border: 2px solid rgb(164, 201, 255);\n"
 "background-color: white;\n"
 "")
@@ -29,24 +29,24 @@ class Ui_Booksearch(object):
         self.search_button.setStyleSheet("border-radius: 10px;\n"
 "border-color: rgb(0, 0, 0);\n"
 "background-color: rgb(164, 201, 255);\n"
-"font: 12pt \"Arial\";\n"
+"font: 13pt \"Arial\";\n"
 "")
         self.search_button.setObjectName("search_button")
         self.books_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.books_button.setGeometry(QtCore.QRect(1020, 20, 75, 90))
+        self.books_button.setGeometry(QtCore.QRect(1010, 20, 95, 90))
         self.books_button.setStyleSheet("border-radius: 10px;\n"
 "border: 2px solid rgb(127, 165, 206);\n"
 "background-color: rgb(233, 243, 255);\n"
-"font: 10pt \"Arial\";\n"
+"font: 12pt \"Arial\";\n"
 "padding 5px;\n"
 "")
         self.books_button.setObjectName("books_button")
         self.visitors_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.visitors_button.setGeometry(QtCore.QRect(1020, 113, 75, 90))
+        self.visitors_button.setGeometry(QtCore.QRect(1010, 113, 95, 90))
         self.visitors_button.setStyleSheet("border-radius: 10px;\n"
 "border: 2px solid rgb(127, 165, 206);\n"
 "background-color: rgb(164, 201, 255);\n"
-"font: 10pt \"Arial\";\n"
+"font: 13pt \"Arial\";\n"
 "padding 5px;\n"
 "")
         self.visitors_button.setObjectName("visitors_button")
@@ -98,7 +98,7 @@ class Ui_Booksearch(object):
         self.add_book_button.setStyleSheet("border-radius: 10px;\n"
 "border-color: rgb(0, 0, 0);\n"
 "background-color: rgb(164, 201, 255);\n"
-"font: 12pt \"Arial\";\n"
+"font: 13pt \"Arial\";\n"
 "")
         self.add_book_button.setObjectName("add_book_button")
         Booksearch.setCentralWidget(self.centralwidget)

@@ -34,8 +34,8 @@ class LoginWindow(QtWidgets.QMainWindow, QtCore.QObject, Ui_Login):
             widget.addWidget(booksearch)
 
 
-            widget.setMinimumWidth(1100)
-            widget.setMinimumHeight(720)
+            widget.setMinimumWidth(1107)
+            widget.setMinimumHeight(719)
 
             screen_width = QtGui.QGuiApplication.primaryScreen().geometry().width()
             screen_height = QtGui.QGuiApplication.primaryScreen().geometry().height()

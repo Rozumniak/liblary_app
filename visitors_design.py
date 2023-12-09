@@ -12,25 +12,25 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Visitorssearch(object):
     def setupUi(self, Visitorssearch):
         Visitorssearch.setObjectName("Visitorssearch")
-        Visitorssearch.resize(1100, 700)
+        Visitorssearch.resize(1107, 719)
         Visitorssearch.setStyleSheet("background-color: rgb(255, 255, 240);")
         self.centralwidget = QtWidgets.QWidget(parent=Visitorssearch)
         self.centralwidget.setObjectName("centralwidget")
         self.visitors_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.visitors_button.setGeometry(QtCore.QRect(1020, 113, 75, 90))
+        self.visitors_button.setGeometry(QtCore.QRect(1010, 113, 95, 90))
         self.visitors_button.setStyleSheet("border-radius: 10px;\n"
 "border: 2px solid rgb(127, 165, 206);\n"
 "background-color: rgb(233, 243, 255);\n"
-"font: 10pt \"Arial\";\n"
+"font: 13pt \"Arial\";\n"
 "padding 5px;\n"
 "")
         self.visitors_button.setObjectName("visitors_button")
         self.books_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.books_button.setGeometry(QtCore.QRect(1020, 20, 75, 90))
+        self.books_button.setGeometry(QtCore.QRect(1010, 20, 95, 90))
         self.books_button.setStyleSheet("border-radius: 10px;\n"
 "border: 2px solid rgb(127, 165, 206);\n"
 "background-color: rgb(164, 201, 255);\n"
-"font: 10pt \"Arial\";\n"
+"font: 13pt \"Arial\";\n"
 "padding 5px;\n"
 "")
         self.books_button.setObjectName("books_button")
@@ -43,27 +43,27 @@ class Ui_Visitorssearch(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.name = QtWidgets.QLineEdit(parent=self.centralwidget)
-        self.name.setGeometry(QtCore.QRect(210, 60, 411, 30))
+        self.name.setGeometry(QtCore.QRect(210, 60, 411, 35))
         self.name.setStyleSheet("border-radius: 10px;\n"
-"font: 10pt \"Arial\";\n"
+"font: 14pt \"Arial\";\n"
 "border: 2px solid rgb(164, 201, 255);\n"
 "background-color: white;\n"
 "")
         self.name.setObjectName("name")
         self.search_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.search_button.setGeometry(QtCore.QRect(640, 60, 75, 30))
+        self.search_button.setGeometry(QtCore.QRect(640, 60, 75, 35))
         self.search_button.setStyleSheet("border-radius: 10px;\n"
 "border-color: rgb(0, 0, 0);\n"
 "background-color: rgb(164, 201, 255);\n"
-"font: 10pt \"Arial\";\n"
+"font: 13pt \"Arial\";\n"
 "")
         self.search_button.setObjectName("search_button")
         self.register_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.register_button.setGeometry(QtCore.QRect(800, 10, 100, 35))
+        self.register_button.setGeometry(QtCore.QRect(800, 10, 125, 35))
         self.register_button.setStyleSheet("border-radius: 10px;\n"
 "border-color: rgb(0, 0, 0);\n"
 "background-color: rgb(164, 201, 255);\n"
-"font: 10pt \"Arial\";\n"
+"font: 13pt \"Arial\";\n"
 "")
         self.register_button.setObjectName("register_button")
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
