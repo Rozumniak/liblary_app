@@ -130,10 +130,12 @@ def get_unique_genres():
     return genres
 
 def addNewBook(name, title, genre, number):
-    cursor.execute('INSERT INTO books (author, book_title, genre, available) VALUES (?,?,?, ?)', (name, title, genre, number,))
+    cursor.execute('INSERT INTO books (author, book_title, genre, available) VALUES (?,?,?,?)', (name, title, genre, number,))
     connection_library.commit()
     return True
 
+
+# cursor.execute('''DROP TABLE workers''')
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
                     worker_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -143,6 +145,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
                     password TEXT NOT NULL)''')
 
 # workers_list = [
+#     ('Admin', 'Admin', 'admin', 'admin'),
 #     ('Розумняк Руслан', 'Бібліотекар', 'ruslan', 'ruslan'),
 #     ('test', 'test', 'test', 'test')
 # ]
@@ -154,6 +157,16 @@ def search_worker(login, password):
     cursor.execute('SELECT * FROM workers WHERE login = ? AND password = ?',(login, password))
     worker = cursor.fetchall()
     return worker
+
+def addNewWorker(name, title, login, password):
+    cursor.execute('INSERT INTO workers (worker_name, job_title, login, password) VALUES (?,?,?,?)',
+                   (name, title, login, password,))
+    connection_library.commit()
+    newWorker = search_worker(login, password)
+    print(newWorker)
+    return newWorker
+
+
 
 # cursor.execute('''DROP TABLE visitors''')
 
