@@ -23,12 +23,12 @@
       <x>190</x>
       <y>29</y>
       <width>510</width>
-      <height>30</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 10px;
-font: 10pt &quot;Arial&quot;;
+font: 14pt &quot;Arial&quot;;
 border: 2px solid rgb(164, 201, 255);
 background-color: white;
 </string>
@@ -50,7 +50,7 @@ background-color: white;
      <string notr="true">border-radius: 10px;
 border-color: rgb(0, 0, 0);
 background-color: rgb(164, 201, 255);
-font: 12pt &quot;Arial&quot;;
+font: 13pt &quot;Arial&quot;;
 </string>
     </property>
     <property name="text">
@@ -60,9 +60,9 @@ font: 12pt &quot;Arial&quot;;
    <widget class="QPushButton" name="books_button">
     <property name="geometry">
      <rect>
-      <x>1020</x>
+      <x>1010</x>
       <y>20</y>
-      <width>75</width>
+      <width>95</width>
       <height>90</height>
      </rect>
     </property>
@@ -70,7 +70,7 @@ font: 12pt &quot;Arial&quot;;
      <string notr="true">border-radius: 10px;
 border: 2px solid rgb(127, 165, 206);
 background-color: rgb(233, 243, 255);
-font: 10pt &quot;Arial&quot;;
+font: 12pt &quot;Arial&quot;;
 padding 5px;
 </string>
     </property>
@@ -81,9 +81,9 @@ padding 5px;
    <widget class="QPushButton" name="visitors_button">
     <property name="geometry">
      <rect>
-      <x>1020</x>
+      <x>1010</x>
       <y>113</y>
-      <width>75</width>
+      <width>95</width>
       <height>90</height>
      </rect>
     </property>
@@ -91,7 +91,7 @@ padding 5px;
      <string notr="true">border-radius: 10px;
 border: 2px solid rgb(127, 165, 206);
 background-color: rgb(164, 201, 255);
-font: 10pt &quot;Arial&quot;;
+font: 13pt &quot;Arial&quot;;
 padding 5px;
 </string>
     </property>
@@ -222,7 +222,7 @@ background-color: white;</string>
      <string notr="true">border-radius: 10px;
 border-color: rgb(0, 0, 0);
 background-color: rgb(164, 201, 255);
-font: 12pt &quot;Arial&quot;;
+font: 13pt &quot;Arial&quot;;
 </string>
     </property>
     <property name="text">
