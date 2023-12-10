@@ -439,35 +439,71 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
         self.give_button.clicked.connect(self.giveBook)
         self.backgroundLayout = QtWidgets.QVBoxLayout(self.background)
         self.text_label = QtWidgets.QLabel()
+        self.id_issue.hide()
 
 
         self.text_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.backgroundLayout.addWidget(self.text_label)
-
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key.Key_Enter or event.key() == QtCore.Qt.Key.Key_Return:
+            self.searchVisitor()
     def searchVisitor(self):
             visitor = searchVisitorById(self.id_field.text())
+            id = self.id_field.text().strip()
+            has_errors = False
 
+            if id == '':
+                self.id_issue.show()
+                self.id_issue.setText("Поле пусте")
+                self.id_field.setStyleSheet("border-radius: 10px;\n"
+                                        "font: 12pt \"Arial\";\n"
+                                        "border: 2px solid red;\n"
+                                        "background-color: white;\n"
+                                        "")
+                has_errors = True
 
-            if visitor:
-                visitor_id, visitor_name, date, books_id = visitor[0:]
-                self.text_label.setText(f"Читатьський квиток №: {visitor_id}\n"
-                                       f"\n"
-                                       f"Имя: {visitor_name}\n"
-                                       f"\n"
-                                       f"Дата регистрации: {date}")
-                self.text_label.setStyleSheet("background-color: rgb(164, 201, 255);"
-                                              "border-radius: 10px;"
-                                              "padding: 3px;"
-                                              "font: 14pt \"Arial\";")
+            elif any(char.isalpha() for char in str(id)):
+                self.id_issue.show()
+                self.id_issue.setText("Введіть цифри")
+                self.id_field.setStyleSheet("border-radius: 10px;\n"
+                                             "font: 12pt \"Arial\";\n"
+                                             "border: 2px solid red;\n"
+                                             "background-color: white;\n"
+                                             "")
+                has_errors = True
             else:
-                self.text_label.setText("Читача не знайдено")
-                self.text_label.setStyleSheet("background-color: rgb(164, 201, 255);"
-                                              "border-radius: 10px;"
-                                              "padding: 3px;"
-                                              "font: 14pt \"Arial\";")
+                self.id_issue.hide()
+                self.id_field.setStyleSheet("border-radius: 10px;\n"
+                                        "font: 12pt \"Arial\";\n"
+                                        "border: 2px solid rgb(164, 201, 255);\n"
+                                        "background-color: white;\n"
+                                        "")
+
+            if has_errors:
+                self.update()
+            else:
+                if visitor:
+                    visitor_id, visitor_name, date, books_id = visitor[0:]
+                    self.text_label.setText(f"Читатьський квиток №: {visitor_id}\n"
+                                           f"\n"
+                                           f"Ім'я: {visitor_name}\n"
+                                           f"\n"
+                                           f"Дата реєстрації: {date}\n"
+                                            f"\n"
+                                            f"Книжок на руках: {len(str(books_id).split(','))}")
+                    self.text_label.setStyleSheet("background-color: rgb(164, 201, 255);"
+                                                  "border-radius: 10px;"
+                                                  "padding: 3px;"
+                                                  "font: 14pt \"Arial\";")
+                else:
+                    self.text_label.setText("Читача не знайдено")
+                    self.text_label.setStyleSheet("background-color: rgb(164, 201, 255);"
+                                                  "border-radius: 10px;"
+                                                  "padding: 3px;"
+                                                  "font: 14pt \"Arial\";")
 
 
-            self.backgroundLayout.update()
+                self.backgroundLayout.update()
 
 
 

@@ -15,7 +15,7 @@ class Ui_giveBook(object):
         giveBook.resize(700, 500)
         giveBook.setStyleSheet("background-color: rgb(255, 255, 240);")
         self.search_button = QtWidgets.QPushButton(parent=giveBook)
-        self.search_button.setGeometry(QtCore.QRect(320, 40, 75, 30))
+        self.search_button.setGeometry(QtCore.QRect(318, 30, 75, 30))
         self.search_button.setStyleSheet("border-radius: 10px;\n"
 "border-color: rgb(0, 0, 0);\n"
 "background-color: rgb(164, 201, 255);\n"
@@ -23,7 +23,7 @@ class Ui_giveBook(object):
 "")
         self.search_button.setObjectName("search_button")
         self.id_field = QtWidgets.QLineEdit(parent=giveBook)
-        self.id_field.setGeometry(QtCore.QRect(112, 40, 171, 30))
+        self.id_field.setGeometry(QtCore.QRect(110, 30, 171, 30))
         self.id_field.setStyleSheet("border-radius: 10px;\n"
 "font: 10pt \"Arial\";\n"
 "border: 2px solid rgb(164, 201, 255);\n"
@@ -46,6 +46,11 @@ class Ui_giveBook(object):
 "font: 12pt \"Arial\";\n"
 "")
         self.give_button.setObjectName("give_button")
+        self.id_issue = QtWidgets.QLabel(parent=giveBook)
+        self.id_issue.setGeometry(QtCore.QRect(110, 60, 200, 35))
+        self.id_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.id_issue.setObjectName("id_issue")
 
         self.retranslateUi(giveBook)
         QtCore.QMetaObject.connectSlotsByName(giveBook)
@@ -56,3 +61,4 @@ class Ui_giveBook(object):
         self.search_button.setText(_translate("giveBook", "Пошук"))
         self.id_field.setPlaceholderText(_translate("giveBook", "Номер читатьського квитка"))
         self.give_button.setText(_translate("giveBook", "Видати"))
+        self.id_issue.setText(_translate("giveBook", "TextLabel"))
