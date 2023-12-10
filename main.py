@@ -81,7 +81,7 @@ class LoginWindow(QtWidgets.QMainWindow, QtCore.QObject, Ui_Login):
                                                "")
                 self.password_issue.show()
                 self.password_issue.setText("Логін чи пароль введено невірно")
-                self.password_issue.setFixedWidth(self.password_issue.width() + 40)
+                self.password_issue.setFixedWidth(self.password_issue.width() + 45)
                 self.password_issue.move(80, self.password_issue.y())
                 self.password_input.setStyleSheet("border-radius: 10px;\n"
                                                   "font: 12pt \"Arial\";\n"
