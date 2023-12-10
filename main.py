@@ -249,6 +249,10 @@ class Booksearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Booksearch):
         self.search_button.clicked.connect(self.search_button_clicked)
         self.add_book_button.clicked.connect(self.addBookClicked)
 
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key.Key_Enter or event.key() == QtCore.Qt.Key.Key_Return:
+            self.search_button_clicked()
+
     def addBookClicked(self):
         self.addBook = AddNewBook()
         self.addBook.show()
