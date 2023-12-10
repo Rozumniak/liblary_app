@@ -30,82 +30,78 @@ class Ui_NewBook(object):
 "font: 12pt \"Arial\";\n"
 "")
         self.back_button.setObjectName("back_button")
-        self.layoutWidget = QtWidgets.QWidget(parent=NewBook)
-        self.layoutWidget.setGeometry(QtCore.QRect(140, 70, 441, 248))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label = QtWidgets.QLabel(parent=self.layoutWidget)
-        self.label.setStyleSheet("font: 14pt \"Arial\";\n"
-"background-color: white;")
-        self.label.setObjectName("label")
-        self.verticalLayout_2.addWidget(self.label)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem)
-        self.label_3 = QtWidgets.QLabel(parent=self.layoutWidget)
-        self.label_3.setStyleSheet("font: 14pt \"Arial\";\n"
-"background-color: white;")
-        self.label_3.setObjectName("label_3")
-        self.verticalLayout_2.addWidget(self.label_3)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem1)
-        self.label_5 = QtWidgets.QLabel(parent=self.layoutWidget)
+        self.label_5 = QtWidgets.QLabel(parent=NewBook)
+        self.label_5.setGeometry(QtCore.QRect(100, 230, 230, 30))
         self.label_5.setStyleSheet("font: 14pt \"Arial\";\n"
 "background-color: white;")
         self.label_5.setObjectName("label_5")
-        self.verticalLayout_2.addWidget(self.label_5)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem2)
-        self.label_4 = QtWidgets.QLabel(parent=self.layoutWidget)
+        self.label = QtWidgets.QLabel(parent=NewBook)
+        self.label.setGeometry(QtCore.QRect(100, 70, 230, 30))
+        self.label.setStyleSheet("font: 14pt \"Arial\";\n"
+"background-color: white;")
+        self.label.setObjectName("label")
+        self.label_4 = QtWidgets.QLabel(parent=NewBook)
+        self.label_4.setGeometry(QtCore.QRect(100, 310, 230, 30))
         self.label_4.setStyleSheet("font: 14pt \"Arial\";\n"
 "background-color: white;")
         self.label_4.setObjectName("label_4")
-        self.verticalLayout_2.addWidget(self.label_4)
-        self.horizontalLayout.addLayout(self.verticalLayout_2)
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.name = QtWidgets.QLineEdit(parent=self.layoutWidget)
-        self.name.setStyleSheet("border-radius: 10px;\n"
-"font: 12pt \"Arial\";\n"
-"border: 2px solid rgb(164, 201, 255);\n"
-"background-color: white;\n"
-"")
-        self.name.setObjectName("name")
-        self.verticalLayout.addWidget(self.name)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout.addItem(spacerItem3)
-        self.title = QtWidgets.QLineEdit(parent=self.layoutWidget)
-        self.title.setStyleSheet("border-radius: 10px;\n"
-"font: 12pt \"Arial\";\n"
-"border: 2px solid rgb(164, 201, 255);\n"
-"background-color: white;\n"
-"")
-        self.title.setObjectName("title")
-        self.verticalLayout.addWidget(self.title)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout.addItem(spacerItem4)
-        self.genre = QtWidgets.QLineEdit(parent=self.layoutWidget)
-        self.genre.setStyleSheet("border-radius: 10px;\n"
-"font: 12pt \"Arial\";\n"
-"border: 2px solid rgb(164, 201, 255);\n"
-"background-color: white;\n"
-"")
-        self.genre.setObjectName("genre")
-        self.verticalLayout.addWidget(self.genre)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout.addItem(spacerItem5)
-        self.number = QtWidgets.QLineEdit(parent=self.layoutWidget)
+        self.label_3 = QtWidgets.QLabel(parent=NewBook)
+        self.label_3.setGeometry(QtCore.QRect(100, 150, 230, 30))
+        self.label_3.setStyleSheet("font: 14pt \"Arial\";\n"
+"background-color: white;")
+        self.label_3.setObjectName("label_3")
+        self.number = QtWidgets.QLineEdit(parent=NewBook)
+        self.number.setGeometry(QtCore.QRect(370, 310, 250, 30))
         self.number.setStyleSheet("border-radius: 10px;\n"
 "font: 12pt \"Arial\";\n"
 "border: 2px solid rgb(164, 201, 255);\n"
 "background-color: white;\n"
 "")
         self.number.setObjectName("number")
-        self.verticalLayout.addWidget(self.number)
-        self.horizontalLayout.addLayout(self.verticalLayout)
+        self.genre = QtWidgets.QLineEdit(parent=NewBook)
+        self.genre.setGeometry(QtCore.QRect(370, 230, 250, 30))
+        self.genre.setStyleSheet("border-radius: 10px;\n"
+"font: 12pt \"Arial\";\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"background-color: white;\n"
+"")
+        self.genre.setObjectName("genre")
+        self.title = QtWidgets.QLineEdit(parent=NewBook)
+        self.title.setGeometry(QtCore.QRect(370, 150, 250, 30))
+        self.title.setStyleSheet("border-radius: 10px;\n"
+"font: 12pt \"Arial\";\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"background-color: white;\n"
+"")
+        self.title.setObjectName("title")
+        self.name = QtWidgets.QLineEdit(parent=NewBook)
+        self.name.setGeometry(QtCore.QRect(370, 70, 250, 30))
+        self.name.setStyleSheet("border-radius: 10px;\n"
+"font: 12pt \"Arial\";\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"background-color: white;\n"
+"")
+        self.name.setObjectName("name")
+        self.name_issue = QtWidgets.QLabel(parent=NewBook)
+        self.name_issue.setGeometry(QtCore.QRect(370, 100, 200, 35))
+        self.name_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.name_issue.setObjectName("name_issue")
+        self.title_issue = QtWidgets.QLabel(parent=NewBook)
+        self.title_issue.setGeometry(QtCore.QRect(370, 180, 200, 35))
+        self.title_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.title_issue.setObjectName("title_issue")
+        self.genre_issue = QtWidgets.QLabel(parent=NewBook)
+        self.genre_issue.setGeometry(QtCore.QRect(370, 260, 200, 35))
+        self.genre_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.genre_issue.setObjectName("genre_issue")
+        self.number_issue = QtWidgets.QLabel(parent=NewBook)
+        self.number_issue.setGeometry(QtCore.QRect(370, 340, 200, 35))
+        self.number_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.number_issue.setObjectName("number_issue")
 
         self.retranslateUi(NewBook)
         QtCore.QMetaObject.connectSlotsByName(NewBook)
@@ -115,7 +111,11 @@ class Ui_NewBook(object):
         NewBook.setWindowTitle(_translate("NewBook", "Form"))
         self.register_button.setText(_translate("NewBook", "Додати"))
         self.back_button.setText(_translate("NewBook", "Назад"))
-        self.label.setText(_translate("NewBook", "Ім\'я та прізвище автора"))
-        self.label_3.setText(_translate("NewBook", "Назва"))
         self.label_5.setText(_translate("NewBook", "Жанр"))
+        self.label.setText(_translate("NewBook", "Ім\'я та прізвище автора"))
         self.label_4.setText(_translate("NewBook", "Кількість"))
+        self.label_3.setText(_translate("NewBook", "Назва"))
+        self.name_issue.setText(_translate("NewBook", "TextLabel"))
+        self.title_issue.setText(_translate("NewBook", "TextLabel"))
+        self.genre_issue.setText(_translate("NewBook", "TextLabel"))
+        self.number_issue.setText(_translate("NewBook", "TextLabel"))

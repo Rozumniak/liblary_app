@@ -4,7 +4,7 @@ connection_library = sqlite3.connect('library.db')
 cursor = connection_library.cursor()
 
 
-
+# cursor.execute('''DROP TABLE books''')
 cursor.execute('''CREATE TABLE IF NOT EXISTS books (
                     book_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     author TEXT NOT NULL,
@@ -202,8 +202,8 @@ def addVisitor(secondName, firstName, date):
     name = secondName + " " + firstName
     null_book_id = 0
     cursor.execute('INSERT INTO visitors (visitor_name, date, books_id) VALUES (?,?,?)',(name, date, null_book_id,))
-    connection_library.commit()
-    return True
+    visitor = connection_library.commit() or False
+    return visitor
 
 def give_book_to_visitor(visitor_id, book_id):
     cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))

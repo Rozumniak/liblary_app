@@ -56,143 +56,148 @@ font: 12pt &quot;Arial&quot;;
     <string>Назад</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>70</y>
-     <width>321</width>
-     <height>248</height>
+     <x>130</x>
+     <y>300</y>
+     <width>155</width>
+     <height>30</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="styleSheet">
-         <string notr="true">font: 14pt &quot;Arial&quot;;
-background-color: white;</string>
-        </property>
-        <property name="text">
-         <string>Прізвище:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="styleSheet">
-         <string notr="true">font: 14pt &quot;Arial&quot;;
-background-color: white;</string>
-        </property>
-        <property name="text">
-         <string>Ім'я:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="styleSheet">
-         <string notr="true">font: 14pt &quot;Arial&quot;;
-background-color: white;</string>
-        </property>
-        <property name="text">
-         <string>Дата реєстрації:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLineEdit" name="secondName">
-        <property name="styleSheet">
-         <string notr="true">border-radius: 10px;
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;Arial&quot;;
+background-color: white;
+border: 2px solid rgb(164, 201, 255);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>Дата реєстрації:</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEdit">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>300</y>
+     <width>166</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
 font: 12pt &quot;Arial&quot;;
 border: 2px solid rgb(164, 201, 255);
 background-color: white;
 </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="firstName">
-        <property name="styleSheet">
-         <string notr="true">border-radius: 10px;
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="secondName">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>100</y>
+     <width>166</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
 font: 12pt &quot;Arial&quot;;
 border: 2px solid rgb(164, 201, 255);
 background-color: white;
 </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QDateEdit" name="dateEdit">
-        <property name="styleSheet">
-         <string notr="true">border-radius: 10px;
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>100</y>
+     <width>155</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;Arial&quot;;
+background-color: white;
+border: 2px solid rgb(164, 201, 255);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>Прізвище:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>200</y>
+     <width>155</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;Arial&quot;;
+background-color: white;
+border: 2px solid rgb(164, 201, 255);
+border-radius: 10px;
+</string>
+   </property>
+   <property name="text">
+    <string>Ім'я:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="firstName">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>200</y>
+     <width>166</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
 font: 12pt &quot;Arial&quot;;
 border: 2px solid rgb(164, 201, 255);
 background-color: white;
 </string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-   </layout>
+   </property>
+  </widget>
+  <widget class="QLabel" name="secondName_issue">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>130</y>
+     <width>200</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: red;
+font: 12pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="firstName_issue">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>230</y>
+     <width>200</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: red;
+font: 12pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
   </widget>
  </widget>
  <resources/>

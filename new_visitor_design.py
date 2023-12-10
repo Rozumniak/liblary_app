@@ -30,65 +30,62 @@ class Ui_NewVisitor(object):
 "font: 12pt \"Arial\";\n"
 "")
         self.back_button.setObjectName("back_button")
-        self.widget = QtWidgets.QWidget(parent=NewVisitor)
-        self.widget.setGeometry(QtCore.QRect(190, 70, 321, 248))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label = QtWidgets.QLabel(parent=self.widget)
-        self.label.setStyleSheet("font: 14pt \"Arial\";\n"
-"background-color: white;")
-        self.label.setObjectName("label")
-        self.verticalLayout_2.addWidget(self.label)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem)
-        self.label_3 = QtWidgets.QLabel(parent=self.widget)
-        self.label_3.setStyleSheet("font: 14pt \"Arial\";\n"
-"background-color: white;")
-        self.label_3.setObjectName("label_3")
-        self.verticalLayout_2.addWidget(self.label_3)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem1)
-        self.label_4 = QtWidgets.QLabel(parent=self.widget)
+        self.label_4 = QtWidgets.QLabel(parent=NewVisitor)
+        self.label_4.setGeometry(QtCore.QRect(130, 300, 155, 30))
         self.label_4.setStyleSheet("font: 14pt \"Arial\";\n"
-"background-color: white;")
+"background-color: white;\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"border-radius: 10px;")
         self.label_4.setObjectName("label_4")
-        self.verticalLayout_2.addWidget(self.label_4)
-        self.horizontalLayout.addLayout(self.verticalLayout_2)
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.secondName = QtWidgets.QLineEdit(parent=self.widget)
-        self.secondName.setStyleSheet("border-radius: 10px;\n"
-"font: 12pt \"Arial\";\n"
-"border: 2px solid rgb(164, 201, 255);\n"
-"background-color: white;\n"
-"")
-        self.secondName.setObjectName("secondName")
-        self.verticalLayout.addWidget(self.secondName)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout.addItem(spacerItem2)
-        self.firstName = QtWidgets.QLineEdit(parent=self.widget)
-        self.firstName.setStyleSheet("border-radius: 10px;\n"
-"font: 12pt \"Arial\";\n"
-"border: 2px solid rgb(164, 201, 255);\n"
-"background-color: white;\n"
-"")
-        self.firstName.setObjectName("firstName")
-        self.verticalLayout.addWidget(self.firstName)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout.addItem(spacerItem3)
-        self.dateEdit = QtWidgets.QDateEdit(parent=self.widget)
+        self.dateEdit = QtWidgets.QDateEdit(parent=NewVisitor)
+        self.dateEdit.setGeometry(QtCore.QRect(360, 300, 166, 24))
         self.dateEdit.setStyleSheet("border-radius: 10px;\n"
 "font: 12pt \"Arial\";\n"
 "border: 2px solid rgb(164, 201, 255);\n"
 "background-color: white;\n"
 "")
         self.dateEdit.setObjectName("dateEdit")
-        self.verticalLayout.addWidget(self.dateEdit)
-        self.horizontalLayout.addLayout(self.verticalLayout)
+        self.secondName = QtWidgets.QLineEdit(parent=NewVisitor)
+        self.secondName.setGeometry(QtCore.QRect(360, 100, 166, 24))
+        self.secondName.setStyleSheet("border-radius: 10px;\n"
+"font: 12pt \"Arial\";\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"background-color: white;\n"
+"")
+        self.secondName.setObjectName("secondName")
+        self.label = QtWidgets.QLabel(parent=NewVisitor)
+        self.label.setGeometry(QtCore.QRect(130, 100, 155, 30))
+        self.label.setStyleSheet("font: 14pt \"Arial\";\n"
+"background-color: white;\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"border-radius: 10px;")
+        self.label.setObjectName("label")
+        self.label_3 = QtWidgets.QLabel(parent=NewVisitor)
+        self.label_3.setGeometry(QtCore.QRect(130, 200, 155, 30))
+        self.label_3.setStyleSheet("font: 14pt \"Arial\";\n"
+"background-color: white;\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"border-radius: 10px;\n"
+"")
+        self.label_3.setObjectName("label_3")
+        self.firstName = QtWidgets.QLineEdit(parent=NewVisitor)
+        self.firstName.setGeometry(QtCore.QRect(360, 200, 166, 24))
+        self.firstName.setStyleSheet("border-radius: 10px;\n"
+"font: 12pt \"Arial\";\n"
+"border: 2px solid rgb(164, 201, 255);\n"
+"background-color: white;\n"
+"")
+        self.firstName.setObjectName("firstName")
+        self.secondName_issue = QtWidgets.QLabel(parent=NewVisitor)
+        self.secondName_issue.setGeometry(QtCore.QRect(360, 130, 200, 35))
+        self.secondName_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.secondName_issue.setObjectName("secondName_issue")
+        self.firstName_issue = QtWidgets.QLabel(parent=NewVisitor)
+        self.firstName_issue.setGeometry(QtCore.QRect(360, 230, 200, 35))
+        self.firstName_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.firstName_issue.setObjectName("firstName_issue")
 
         self.retranslateUi(NewVisitor)
         QtCore.QMetaObject.connectSlotsByName(NewVisitor)
@@ -98,6 +95,8 @@ class Ui_NewVisitor(object):
         NewVisitor.setWindowTitle(_translate("NewVisitor", "Form"))
         self.register_button.setText(_translate("NewVisitor", "Зареєструвати"))
         self.back_button.setText(_translate("NewVisitor", "Назад"))
+        self.label_4.setText(_translate("NewVisitor", "Дата реєстрації:"))
         self.label.setText(_translate("NewVisitor", "Прізвище:"))
         self.label_3.setText(_translate("NewVisitor", "Ім\'я:"))
-        self.label_4.setText(_translate("NewVisitor", "Дата реєстрації:"))
+        self.secondName_issue.setText(_translate("NewVisitor", "TextLabel"))
+        self.firstName_issue.setText(_translate("NewVisitor", "TextLabel"))
