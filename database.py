@@ -190,7 +190,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS visitors (
 
 def search_visitor(name):
     cursor.execute('SELECT * FROM visitors WHERE visitor_name LIKE ?',('%' + name + '%',))
-    visitor = cursor.fetchall()
+    visitor = cursor.fetchall() or False
     return visitor
 
 def searchVisitorById(id):

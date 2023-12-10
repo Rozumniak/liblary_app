@@ -383,37 +383,47 @@ class Booksearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Booksearch):
         self.labels_layout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
 
 
+        if books:
+            for i in books:
+                book_id, author, title, genre, available = i[0:]
 
-        for i in books:
-            book_id, author, title, genre, available = i[0:]
+                self.label = QtWidgets.QLabel()
+                self.label.setStyleSheet("background-color: rgb(164, 201, 255);"
+                                    "border-radius: 10px;"
+                                    "padding: 0px;"
+                                    "font: 14pt \"Arial\";")
+                self.label.setFixedHeight(60)
+                self.label.setFixedWidth(self.scrollArea.width()-40)
 
-            self.label = QtWidgets.QLabel()
-            self.label.setStyleSheet("background-color: rgb(164, 201, 255);"
-                                "border-radius: 10px;"
-                                "padding: 0px;"
-                                "font: 14pt \"Arial\";")
-            self.label.setFixedHeight(60)
-            self.label.setFixedWidth(self.scrollArea.width()-40)
+                self.label_layout = QtWidgets.QHBoxLayout(self.label)
 
-            self.label_layout = QtWidgets.QHBoxLayout(self.label)
+                label_text = QtWidgets.QLabel(f"Автор: {author}| Назва: {title}| Жанр: {genre}|\n Наявність: {available}")
+                self.label_layout.addWidget(label_text)
 
-            label_text = QtWidgets.QLabel(f"Автор: {author}| Назва: {title}| Жанр: {genre}|\n Наявність: {available}")
-            self.label_layout.addWidget(label_text)
-
-            self.give_book = QtWidgets.QPushButton(f"Видати")
-            self.give_book.setGeometry(QtCore.QRect(750, 70, 111, 41))
-            self.give_book.setStyleSheet("border-radius: 10px;\n"
-                                         "border-color: rgb(0, 0, 0);\n"
-                                         "\n"
-                                         "background-color: rgb(255, 242, 239);\n"
-                                         "font: 14pt \"Arial\";\n"
-                                         "")
-            self.give_book.setFixedHeight(40)
-            self.give_book.setFixedWidth(150)
-            self.give_book.clicked.connect(lambda _, book_id=i: self.giveBookClicked(book_id))
-            self.label_layout.addWidget(self.give_book)
-            self.labels_layout.addWidget(self.label)
-            self.labels_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
+                self.give_book = QtWidgets.QPushButton(f"Видати")
+                self.give_book.setGeometry(QtCore.QRect(750, 70, 111, 41))
+                self.give_book.setStyleSheet("border-radius: 10px;\n"
+                                             "border-color: rgb(0, 0, 0);\n"
+                                             "\n"
+                                             "background-color: rgb(255, 242, 239);\n"
+                                             "font: 14pt \"Arial\";\n"
+                                             "")
+                self.give_book.setFixedHeight(40)
+                self.give_book.setFixedWidth(150)
+                self.give_book.clicked.connect(lambda _, book_id=i: self.giveBookClicked(book_id))
+                self.label_layout.addWidget(self.give_book)
+                self.labels_layout.addWidget(self.label)
+                self.labels_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
+        else:
+            label_text = QtWidgets.QLabel(f"Таку книгу не знайдено")
+            label_text.setStyleSheet("background-color: red;"
+                                         "border-radius: 10px;"
+                                         "padding: 0px;"
+                                         "font: 14pt \"Arial\";")
+            label_text.setFixedHeight(40)
+            label_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            self.labels_layout.addWidget(label_text)
+            self.labels_layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignTop)
 
 class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
     def __init__(self):
@@ -541,15 +551,11 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
         self.books_button.clicked.connect(self.booksClicked)
         self.register_button.clicked.connect(self.registerClicked)
         self.search_button.clicked.connect(self.searchButtonClicked)
-        # self.searchButtonClicked()
         widget.currentChanged.connect(self.searchButtonClicked)
-
-        # self.scrollAreaWidgetContents.deleteLater()
-        # self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        # self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 929, 499))
-        # self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        # self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
+        self.name_issue.hide()
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key.Key_Enter or event.key() == QtCore.Qt.Key.Key_Return:
+            self.searchButtonClicked()
     def registerClicked(self):
         self.newVisitor = NewVisitor()
         self.newVisitor.show()
@@ -638,34 +644,66 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
 
         self.labels_layout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
 
-        for i in visitor:
-            visitor_id, visitor_name, date, books_id = i[0:]
-            if books_id != None and books_id != 0:
-                self.label_text = QtWidgets.QLabel(
-                        f"Номер квитка: {visitor_id} |"
-                        f"Ім'я: {visitor_name}| Дата реєстрації: {date}| Кількість книжок на руках: {len(str(books_id).split(','))}|"
-                        f"")
-                self.label_text.setStyleSheet("background-color: rgb(164, 201, 255);"
-                                         "border-radius: 10px;"
-                                         "padding: 3px;"
-                                         "font: 14pt \"Arial\";")
-                self.label_text.setFixedHeight(60)
-                self.label_text.setFixedWidth(self.scrollArea.width() - 40)
+        name = self.name.text().strip()
+        has_errors = False
+
+        if any(char.isdigit() for char in str(name)):
+            self.name_issue.show()
+            self.name_issue.setText("Поле приймає тільки букви")
+            self.name.setStyleSheet("border-radius: 10px;\n"
+                                        "font: 12pt \"Arial\";\n"
+                                        "border: 2px solid red;\n"
+                                        "background-color: white;\n"
+                                        "")
+            has_errors = True
+        else:
+            self.name_issue.hide()
+            self.name.setStyleSheet("border-radius: 10px;\n"
+                                        "font: 12pt \"Arial\";\n"
+                                        "border: 2px solid rgb(164, 201, 255);\n"
+                                        "background-color: white;\n"
+                                        "")
+        if has_errors:
+            self.update()
+        else:
+            if visitor:
+                for i in visitor:
+                    visitor_id, visitor_name, date, books_id = i[0:]
+                    if books_id != None and books_id != 0:
+                        self.label_text = QtWidgets.QLabel(
+                                f"Номер квитка: {visitor_id} |"
+                                f"Ім'я: {visitor_name}| Дата реєстрації: {date}| Кількість книжок на руках: {len(str(books_id).split(','))}|"
+                                f"")
+                        self.label_text.setStyleSheet("background-color: rgb(164, 201, 255);"
+                                                 "border-radius: 10px;"
+                                                 "padding: 3px;"
+                                                 "font: 14pt \"Arial\";")
+                        self.label_text.setFixedHeight(60)
+                        self.label_text.setFixedWidth(self.scrollArea.width() - 40)
+                    else:
+                        self.label_text = QtWidgets.QLabel(
+                            f"Номер квитка: {visitor_id} |"
+                            f"Ім'я: {visitor_name} | Дата реєстрації: {date}| Кількість книжок на руках: 0|")
+                        self.label_text.setStyleSheet("background-color: rgb(164, 201, 255);"
+                                                     "border-radius: 10px;"
+                                                     "padding: 3px;"
+                                                     "font: 14pt \"Arial\";")
+                        self.label_text.setFixedHeight(60)
+                        self.label_text.setFixedWidth(self.scrollArea.width() - 40)
+
+                    self.label_text.mousePressEvent = lambda event, visitor = i: self.labelClicked(visitor)
+                    self.labels_layout.addWidget(self.label_text)
+                    self.labels_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
             else:
-                self.label_text = QtWidgets.QLabel(
-                    f"Номер квитка: {visitor_id} |"
-                    f"Ім'я: {visitor_name} | Дата реєстрації: {date}| Кількість книжок на руках: 0|")
-                self.label_text.setStyleSheet("background-color: rgb(164, 201, 255);"
-                                             "border-radius: 10px;"
-                                             "padding: 3px;"
-                                             "font: 14pt \"Arial\";")
-                self.label_text.setFixedHeight(60)
-                self.label_text.setFixedWidth(self.scrollArea.width() - 40)
-
-            self.label_text.mousePressEvent = lambda event, visitor = i: self.labelClicked(visitor)
-            self.labels_layout.addWidget(self.label_text)
-            self.labels_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
-
+                label_text = QtWidgets.QLabel(f"Такого читача не знайдено")
+                label_text.setStyleSheet("background-color: red;"
+                                         "border-radius: 10px;"
+                                         "padding: 0px;"
+                                         "font: 14pt \"Arial\";")
+                label_text.setFixedHeight(40)
+                label_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                self.labels_layout.addWidget(label_text)
+                self.labels_layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignTop)
 class NewVisitor(QtWidgets.QWidget, QtCore.QObject, Ui_NewVisitor):
     def __init__(self):
         super().__init__()

@@ -72,6 +72,11 @@ class Ui_Visitorssearch(object):
         self.label.setPixmap(QtGui.QPixmap("Designer-removebg-preview.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
+        self.name_issue = QtWidgets.QLabel(parent=self.centralwidget)
+        self.name_issue.setGeometry(QtCore.QRect(210, 100, 200, 35))
+        self.name_issue.setStyleSheet("color: red;\n"
+"font: 12pt \"Arial\";")
+        self.name_issue.setObjectName("name_issue")
         Visitorssearch.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=Visitorssearch)
         self.statusbar.setObjectName("statusbar")
@@ -88,3 +93,4 @@ class Ui_Visitorssearch(object):
         self.name.setPlaceholderText(_translate("Visitorssearch", "Введіть прізвище або ім\'я"))
         self.search_button.setText(_translate("Visitorssearch", "Пошук"))
         self.register_button.setText(_translate("Visitorssearch", "Зареєструвати"))
+        self.name_issue.setText(_translate("Visitorssearch", "TextLabel"))
