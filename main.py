@@ -21,34 +21,92 @@ class LoginWindow(QtWidgets.QMainWindow, QtCore.QObject, Ui_Login):
         super().__init__()
         self.setupUi(self)
         self.pushButton.clicked.connect(self.buttonClicked)
+        self.login_issue.hide()
+        self.password_issue.hide()
+        self.login_input.setFocus()
 
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key.Key_Enter or event.key() == QtCore.Qt.Key.Key_Return:
+            self.buttonClicked()
 
     def buttonClicked(self):
-        login = self.login_input.text()
-        password = self.password_input.text()
+        login = self.login_input.text().strip()
+        password = self.password_input.text().strip()
         worker = search_worker(login, password)
-        print(worker[0][3])
+        has_errors = False
 
-        if worker[0][3] == 'admin' and worker[0][4] == 'admin':
-            self.newWorker = NewWorker()
-            self.newWorker.show()
-        elif worker:
-            booksearch = Booksearch()
-            widget.addWidget(booksearch)
+        if login == '':
+            self.login_issue.show()
+            self.login_issue.setText("Поле пусте")
+            self.login_input.setStyleSheet("border-radius: 10px;\n"
+                                    "font: 12pt \"Arial\";\n"
+                                    "border: 2px solid red;\n"
+                                    "background-color: white;\n"
+                                    "")
+            has_errors = True
+        else:
+            self.login_issue.hide()
+            self.login_input.setStyleSheet("border-radius: 10px;\n"
+                                     "font: 12pt \"Arial\";\n"
+                                     "border: 2px solid rgb(164, 201, 255);\n"
+                                     "background-color: white;\n"
+                                     "")
+
+        if password == '':
+            self.password_issue.show()
+            self.password_issue.setText("Поле пусте")
+            self.password_input.setStyleSheet("border-radius: 10px;\n"
+                                    "font: 12pt \"Arial\";\n"
+                                    "border: 2px solid red;\n"
+                                    "background-color: white;\n"
+                                    "")
+            self.password_issue.move(190, self.password_issue.y())
+            has_errors = True
+        else:
+            self.password_issue.hide()
+            self.password_input.setStyleSheet("border-radius: 10px;\n"
+                                     "font: 12pt \"Arial\";\n"
+                                     "border: 2px solid rgb(164, 201, 255);\n"
+                                     "background-color: white;\n"
+                                     "")
+
+        if has_errors:
+            self.update()
+        else:
+            if worker == False:
+                self.login_input.setStyleSheet("border-radius: 10px;\n"
+                                               "font: 12pt \"Arial\";\n"
+                                               "border: 2px solid red;\n"
+                                               "background-color: white;\n"
+                                               "")
+                self.password_issue.show()
+                self.password_issue.setText("Логін чи пароль введено невірно")
+                self.password_issue.setFixedWidth(self.password_issue.width() + 40)
+                self.password_issue.move(80, self.password_issue.y())
+                self.password_input.setStyleSheet("border-radius: 10px;\n"
+                                                  "font: 12pt \"Arial\";\n"
+                                                  "border: 2px solid red;\n"
+                                                  "background-color: white;\n"
+                                                  "")
+
+            elif worker[0][3] == 'admin' and worker[0][4] == 'admin':
+                self.newWorker = NewWorker()
+                self.newWorker.show()
+            elif worker:
+                booksearch = Booksearch()
+                widget.addWidget(booksearch)
 
 
-            widget.setMinimumWidth(1107)
-            widget.setMinimumHeight(719)
+                widget.setMinimumWidth(1107)
+                widget.setMinimumHeight(719)
 
-            screen_width = QtGui.QGuiApplication.primaryScreen().geometry().width()
-            screen_height = QtGui.QGuiApplication.primaryScreen().geometry().height()
-            widget_width = widget.width()
-            widget_height = widget.height()
+                screen_width = QtGui.QGuiApplication.primaryScreen().geometry().width()
+                screen_height = QtGui.QGuiApplication.primaryScreen().geometry().height()
+                widget_width = widget.width()
+                widget_height = widget.height()
 
-            widget.move(int((screen_width - widget_width) / 2), int((screen_height - widget_height) / 2))
-            widget.setCurrentIndex(widget.currentIndex() + 1)
-
-        else: print('Invalid login or password')
+                widget.move(int((screen_width - widget_width) / 2), int((screen_height - widget_height) / 2))
+                widget.setCurrentIndex(widget.currentIndex() + 1)
 
 class NewWorker(QtWidgets.QWidget, QtCore.QObject, Ui_NewWorker):
     def __init__(self):
@@ -60,7 +118,9 @@ class NewWorker(QtWidgets.QWidget, QtCore.QObject, Ui_NewWorker):
         self.title_issue.hide()
         self.login_issue.hide()
         self.password_issue.hide()
-
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key.Key_Enter or event.key() == QtCore.Qt.Key.Key_Return:
+            self.newWorkerRegister()
     def newWorkerRegister(self):
         name_text = self.name.text().strip()
         title_text = self.job_title.text().strip()

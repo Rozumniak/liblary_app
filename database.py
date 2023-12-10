@@ -155,7 +155,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
 
 def search_worker(login, password):
     cursor.execute('SELECT * FROM workers WHERE login = ? AND password = ?',(login, password))
-    worker = cursor.fetchall()
+    worker = cursor.fetchall() or False
     return worker
 
 def addNewWorker(name, title, login, password):
