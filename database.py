@@ -163,7 +163,6 @@ def addNewWorker(name, title, login, password):
                    (name, title, login, password,))
     connection_library.commit()
     newWorker = search_worker(login, password)
-    print(newWorker)
     return newWorker
 
 
@@ -255,53 +254,8 @@ def returnBook(visitor_id, book_id):
         else:
             return False  # Книга не была выдана данному посетителю
     else:
-        print('нету человека')
         return False  # такого посетителя нету
 
-
-
-# def give_book_to_visitor(visitor_id, book_id):
-#     cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
-#     current_books = cursor.fetchone()
-#     print(current_books)
-#
-#
-#     if current_books != '0':
-#         current_books_list = [b.strip() for b in current_books[0].split(',') if b.strip()]
-#         if not current_books_list:
-#             updated_books = f'{book_id},'
-#         else:
-#             if str(book_id) not in current_books_list:
-#                 current_books_list.append(str(book_id))
-#             updated_books = ','.join(current_books_list)
-#
-#         cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
-#         connection_library.commit()
-#         return True
-#     elif current_books == '0':
-#         print('1')
-#         # If current_books is None, create a new list with the current book ID
-#         cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (str(book_id), visitor_id))
-#         connection_library.commit()
-#         return True
-
-
-
-
-def remove_book_from_visitor(visitor_id, book_id):
-    cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
-    current_books = cursor.fetchone()
-
-    if current_books:
-        books_list = [b.strip() for b in current_books[0].split(',') if b.strip() != str(book_id)]
-
-        updated_books = ','.join(books_list)
-        cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
-        connection_library.commit()
-
-        return True
-    else:
-        return False
 
 
 

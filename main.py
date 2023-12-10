@@ -9,7 +9,7 @@ from new_book_design import Ui_NewBook
 from new_worker_design import Ui_NewWorker
 
 from database import (search_by_author, search_by_id, search_worker, search_by_title, get_unique_genres, search_by_genre,
-                      search_visitor, give_book_to_visitor, remove_book_from_visitor, searchVisitorById, addVisitor, returnBook,
+                      search_visitor, give_book_to_visitor, searchVisitorById, addVisitor, returnBook,
                       addNewBook, addNewWorker)
 
 import sys
@@ -551,7 +551,6 @@ class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
             self.update()
         else:
             addBook = addNewBook(name, title, genre, int(self.number.text()))
-            print(addBook)
             if addBook:
                 self.close()
             else:
@@ -767,7 +766,6 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
 
 
     def searchButtonClicked(self):
-        print('click')
         self.scrollAreaWidgetContents.deleteLater()
         visitor = search_visitor(self.name.text())
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
