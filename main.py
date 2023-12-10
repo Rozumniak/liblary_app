@@ -313,10 +313,6 @@ class Booksearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Booksearch):
         self.givebook = GiveBook(book_id)
         self.givebook.show()
 
-    def click(self):
-        self.layout()
-        self.search_by_author()
-
     def search_by_title(self):
         self.scrollAreaWidgetContents.deleteLater()
         self.title = self.search_input.text()
@@ -328,37 +324,48 @@ class Booksearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Booksearch):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.labels_layout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        if books:
+            for i in books:
+                book_id, author, title, genre, available = i[0:]
 
-        for i in books:
-            book_id, author, title, genre, available = i[0:]
+                self.label = QtWidgets.QLabel()
+                self.label.setStyleSheet("background-color: rgb(164, 201, 255);"
+                                         "border-radius: 10px;"
+                                         "padding: 0px;"
+                                         "font: 14pt \"Arial\";")
+                self.label.setFixedHeight(60)
+                self.label.setFixedWidth(self.scrollArea.width() - 40)
 
-            self.label = QtWidgets.QLabel()
-            self.label.setStyleSheet("background-color: rgb(164, 201, 255);"
-                                     "border-radius: 10px;"
-                                     "padding: 0px;"
-                                     "font: 14pt \"Arial\";")
-            self.label.setFixedHeight(60)
-            self.label.setFixedWidth(self.scrollArea.width() - 40)
+                self.label_layout = QtWidgets.QHBoxLayout(self.label)
 
-            self.label_layout = QtWidgets.QHBoxLayout(self.label)
+                label_text = QtWidgets.QLabel(f"Автор: {author}| Назва: {title}| Жанр: {genre}|\n Наявність: {available}")
+                self.label_layout.addWidget(label_text)
 
-            label_text = QtWidgets.QLabel(f"Автор: {author}| Назва: {title}| Жанр: {genre}|\n Наявність: {available}")
-            self.label_layout.addWidget(label_text)
+                self.give_book = QtWidgets.QPushButton(f"Видати")
+                self.give_book.setGeometry(QtCore.QRect(750, 70, 111, 41))
+                self.give_book.setStyleSheet("border-radius: 10px;\n"
+                                             "border-color: rgb(0, 0, 0);\n"
+                                             "\n"
+                                             "background-color: rgb(255, 242, 239);\n"
+                                             "font: 14pt \"Arial\";\n"
+                                             "")
+                self.give_book.setFixedHeight(40)
+                self.give_book.setFixedWidth(150)
+                self.give_book.clicked.connect(lambda _, book_id=i: self.giveBookClicked(book_id))
+                self.label_layout.addWidget(self.give_book)
+                self.labels_layout.addWidget(self.label)
+                self.labels_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
+        else:
+            label_text = QtWidgets.QLabel(f"Таку книгу не знайдено")
+            label_text.setStyleSheet("background-color: red;"
+                                         "border-radius: 10px;"
+                                         "padding: 0px;"
+                                         "font: 14pt \"Arial\";")
+            label_text.setFixedHeight(40)
+            label_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            self.labels_layout.addWidget(label_text)
+            self.labels_layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignTop)
 
-            self.give_book = QtWidgets.QPushButton(f"Видати")
-            self.give_book.setGeometry(QtCore.QRect(750, 70, 111, 41))
-            self.give_book.setStyleSheet("border-radius: 10px;\n"
-                                         "border-color: rgb(0, 0, 0);\n"
-                                         "\n"
-                                         "background-color: rgb(255, 242, 239);\n"
-                                         "font: 14pt \"Arial\";\n"
-                                         "")
-            self.give_book.setFixedHeight(40)
-            self.give_book.setFixedWidth(150)
-            self.give_book.clicked.connect(lambda _, book_id=i: self.giveBookClicked(book_id))
-            self.label_layout.addWidget(self.give_book)
-            self.labels_layout.addWidget(self.label)
-            self.labels_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
 
     def search_by_author(self):
         self.scrollAreaWidgetContents.deleteLater()

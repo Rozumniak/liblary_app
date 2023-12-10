@@ -114,7 +114,7 @@ def search_by_id(id):
 
 def search_by_title(title):
     cursor.execute('SELECT * FROM books WHERE book_title LIKE ?', ('%' + title + '%',))
-    books = cursor.fetchall()
+    books = cursor.fetchall() or False
     return books
 
 
