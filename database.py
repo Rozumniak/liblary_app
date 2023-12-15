@@ -205,26 +205,43 @@ def addVisitor(secondName, firstName, date):
     return visitor
 
 def give_book_to_visitor(visitor_id, book_id):
-    cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
-    current_books = cursor.fetchone()
+    givenBook = search_by_id(book_id)
+    if givenBook[0][4] != 0:
+        cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
+        current_books = cursor.fetchone()
 
-    if current_books[0] !=0:
-        current_books_list = [str(current_books[0])]  # Перероблює у список одним елементом
-        if str(book_id) not in current_books_list:
-            current_books_list.append(str(book_id))
-            updated_books = ','.join(current_books_list)
+        if current_books[0] !=0:
+            current_books_list = [str(current_books[0])]  # Перероблює у список одним елементом
+            if str(book_id) not in current_books_list:
+                current_books_list.append(str(book_id))
+                updated_books = ','.join(current_books_list)
 
-            cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
+                cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
+                connection_library.commit()
+
+                book = search_by_id(book_id)
+                book_count = book[0][4] - 1
+
+                cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
+                connection_library.commit()
+                print(search_by_id(book_id))
+
+                return True
+            else:
+                return False  # Книга вже записана на юзері
+        elif current_books[0] == 0:
+            cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (book_id, visitor_id))
             connection_library.commit()
+
+            book = search_by_id(book_id)
+            book_count = book[0][4] - 1
+
+            cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
+            connection_library.commit()
+            print(search_by_id(book_id))
+
             return True
-        else:
-            return False  # Книга вже записана на юзері
-    elif current_books[0] == 0:
-        cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (book_id, visitor_id))
-        connection_library.commit()
-        return True
-    # elif current_books == None:
-    #     return False
+
 
 
 def returnBook(visitor_id, book_id):
@@ -234,13 +251,18 @@ def returnBook(visitor_id, book_id):
     cursor.execute('SELECT * FROM visitors WHERE visitor_id = ?', (visitor_id,))
     current_visitor = cursor.fetchone()
 
+    book = search_by_id(book_id)
+    book_count = book[0][4] + 1
+
+    cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
+    connection_library.commit()
+
     if current_books and current_books[0] != 0:
         current_books_list = str(current_books[0]).split(',')
 
         if str(book_id) in current_books_list:
             current_books_list.remove(str(book_id))
             updated_books = ','.join(current_books_list)
-
 
             cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
             connection_library.commit()
