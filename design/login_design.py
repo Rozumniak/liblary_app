@@ -15,6 +15,27 @@ class Ui_Login(object):
         Login.setObjectName("Login")
         Login.resize(380, 600)
         Login.setStyleSheet("background-color: rgb(255, 255, 240);")
+        self.login_input = QtWidgets.QLineEdit(parent=Login)
+        self.login_input.setGeometry(QtCore.QRect(180, 240, 130, 40))
+        self.login_input.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
+        self.login_input.setStyleSheet("border-radius: 10px;\n"
+                                       "border: 2px solid rgb(164, 201, 255);\n"
+                                       "background-color: white;\n"
+                                       "padding: 10px;")
+        self.login_input.setInputMask("")
+        self.login_input.setText("")
+        self.login_input.setObjectName("login_input")
+
+        self.password_input = QtWidgets.QLineEdit(parent=Login)
+        self.password_input.setGeometry(QtCore.QRect(180, 330, 130, 40))
+        self.password_input.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
+        self.password_input.setStyleSheet("border-radius: 10px;\n"
+                                          "border: 2px solid rgb(164, 201, 255);\n"
+                                          "background-color: white;\n"
+                                          "padding: 10px;")
+        self.password_input.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+        self.password_input.setObjectName("password_input")
+
         self.password_issue = QtWidgets.QLabel(parent=Login)
         self.password_issue.setGeometry(QtCore.QRect(180, 370, 200, 35))
         self.password_issue.setStyleSheet("color: red;\n"
@@ -29,20 +50,11 @@ class Ui_Login(object):
 "padding: 10px;\n"
 "width: 130px;")
         self.pushButton.setObjectName("pushButton")
-        self.password_input = QtWidgets.QLineEdit(parent=Login)
-        self.password_input.setGeometry(QtCore.QRect(180, 330, 130, 40))
-        self.password_input.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
-        self.password_input.setStyleSheet("border-radius: 10px;\n"
-"border: 2px solid rgb(164, 201, 255);\n"
-"background-color: white;\n"
-"padding: 10px;")
-        self.password_input.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
-        self.password_input.setObjectName("password_input")
+
         self.label = QtWidgets.QLabel(parent=Login)
         self.label.setGeometry(QtCore.QRect(105, 40, 170, 170))
         self.label.setStyleSheet("")
         self.label.setText("")
-        # self.label.setPixmap(QtGui.QPixmap("logo.png"))
         self.label.setPixmap(QtGui.QPixmap(os.path.join(os.path.dirname(__file__), "logo.png")))
 
         self.label.setScaledContents(True)
@@ -52,16 +64,7 @@ class Ui_Login(object):
         self.login_issue.setStyleSheet("color: red;\n"
 "font: 12pt \"Arial\";")
         self.login_issue.setObjectName("login_issue")
-        self.login_input = QtWidgets.QLineEdit(parent=Login)
-        self.login_input.setGeometry(QtCore.QRect(180, 240, 130, 40))
-        self.login_input.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
-        self.login_input.setStyleSheet("border-radius: 10px;\n"
-"border: 2px solid rgb(164, 201, 255);\n"
-"background-color: white;\n"
-"padding: 10px;")
-        self.login_input.setInputMask("")
-        self.login_input.setText("")
-        self.login_input.setObjectName("login_input")
+
         self.password_label = QtWidgets.QLabel(parent=Login)
         self.password_label.setGeometry(QtCore.QRect(60, 330, 110, 42))
         self.password_label.setStyleSheet("font: 87 14pt \"Arial\";\n"

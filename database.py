@@ -101,6 +101,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS books (
 
 
 def search_by_author(author):
+    author = author.capitalize()
     cursor.execute('SELECT * FROM books WHERE author LIKE ?', ('%' + author + '%',))
     books = cursor.fetchall()
     return books
@@ -113,6 +114,7 @@ def search_by_id(id):
 
 
 def search_by_title(title):
+    title = title.capitalize()
     cursor.execute('SELECT * FROM books WHERE book_title LIKE ?', ('%' + title + '%',))
     books = cursor.fetchall() or False
     return books
@@ -130,6 +132,9 @@ def get_unique_genres():
     return genres
 
 def addNewBook(name, title, genre, number):
+    name = name.capitalize()
+    title = title.capitalize()
+    genre = genre.capitalize()
     cursor.execute('INSERT INTO books (author, book_title, genre, available) VALUES (?,?,?,?)', (name, title, genre, number,))
     connection_library.commit()
     return True
@@ -154,11 +159,15 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
 
 
 def search_worker(login, password):
+    login = login.lower()
     cursor.execute('SELECT * FROM workers WHERE login = ? AND password = ?',(login, password))
     worker = cursor.fetchall() or False
     return worker
 
 def addNewWorker(name, title, login, password):
+    name = name.capitalize()
+    title = title.capitalize()
+    login = login.lower()
     cursor.execute('INSERT INTO workers (worker_name, job_title, login, password) VALUES (?,?,?,?)',
                    (name, title, login, password,))
     connection_library.commit()
@@ -188,6 +197,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS visitors (
 # connection_library.close()
 
 def search_visitor(name):
+    name = name.capitalize()
     cursor.execute('SELECT * FROM visitors WHERE visitor_name LIKE ?',('%' + name + '%',))
     visitor = cursor.fetchall() or False
     return visitor
@@ -198,6 +208,8 @@ def searchVisitorById(id):
     return visitor
 
 def addVisitor(secondName, firstName, date):
+    secondName = secondName.capitalize()
+    firstName = firstName.capitalize()
     name = secondName + " " + firstName
     null_book_id = 0
     cursor.execute('INSERT INTO visitors (visitor_name, date, books_id) VALUES (?,?,?)',(name, date, null_book_id,))
@@ -243,7 +255,7 @@ def give_book_to_visitor(visitor_id, book_id):
             return True
 
 
-
+# Метод для поверненя книг
 def returnBook(visitor_id, book_id):
     cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
     current_books = cursor.fetchone()
@@ -259,7 +271,7 @@ def returnBook(visitor_id, book_id):
 
     if current_books and current_books[0] != 0:
         current_books_list = str(current_books[0]).split(',')
-
+        # Записуємо у БД кількість книг
         if str(book_id) in current_books_list:
             current_books_list.remove(str(book_id))
             updated_books = ','.join(current_books_list)
@@ -267,16 +279,16 @@ def returnBook(visitor_id, book_id):
             cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
             connection_library.commit()
 
-            # Проверяем, если больше нет книг, записываем число 0 в базу данных
+            # Якщо немає більше книг, записуємо число 0 у БД
             if not current_books_list:
                 cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (0, visitor_id))
                 connection_library.commit()
 
-            return True and current_visitor  # Книга успешно возвращена
+            return True and current_visitor  # Книга повернута
         else:
-            return False  # Книга не была выдана данному посетителю
+            return False  # Такої книги на відвідувачі нема
     else:
-        return False  # такого посетителя нету
+        return False  # Такого відвідувача немає
 
 
 

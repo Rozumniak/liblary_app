@@ -3,8 +3,6 @@ from PyQt6 import QtWidgets, QtCore
 from design.login_design import Ui_Login
 from database import search_worker
 
-
-
 class LoginWindow(QtWidgets.QWidget, QtCore.QObject, Ui_Login):
     login_successful = QtCore.pyqtSignal()
 
@@ -90,19 +88,3 @@ class LoginWindow(QtWidgets.QWidget, QtCore.QObject, Ui_Login):
             elif worker:
                 self.login_successful.emit()
                 self.hide()
-
-                # booksearch = Booksearch()
-                # main.widget.addWidget(booksearch)
-                #
-                #
-                # main.widget.setMinimumWidth(1107)
-                # main.widget.setMinimumHeight(719)
-                #
-                # screen_width = QtGui.QGuiApplication.primaryScreen().geometry().width()
-                # screen_height = QtGui.QGuiApplication.primaryScreen().geometry().height()
-                # widget_width = main.widget.width()
-                # widget_height = main.widget.height()
-                #
-                # main.widget.move(int((screen_width - widget_width) / 2), int((screen_height - widget_height) / 2))
-                # main.widget.setCurrentIndex(main.widget.currentIndex() + 1)
-                # booksearch.show()

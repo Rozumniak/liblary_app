@@ -21,7 +21,6 @@ class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
         title = self.title.text().strip()
         genre = self.genre.text().strip()
         number = self.number.text().strip()
-        # numberAdded = int(self.number.text())
 
         has_errors = False
 

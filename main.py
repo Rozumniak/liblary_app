@@ -3,7 +3,7 @@ from classes.loginWindow import LoginWindow
 from classes.bookSearch import Booksearch
 from classes.visitors import VisitorsSearch
 
-from PyQt6 import QtWidgets, QtCore, QtGui
+from PyQt6 import QtWidgets, QtGui
 
 class MainApplication(QtWidgets.QWidget):
     def __init__(self):

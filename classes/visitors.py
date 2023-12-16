@@ -14,8 +14,10 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
         self.books_button.clicked.connect(self.booksClicked)
         self.register_button.clicked.connect(self.registerClicked)
         self.search_button.clicked.connect(self.searchButtonClicked)
-        # widget.currentChanged.connect(self.searchButtonClicked)
         self.name_issue.hide()
+
+    def showEvent(self, event):
+        self.searchButtonClicked()
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key.Key_Enter or event.key() == QtCore.Qt.Key.Key_Return:
             self.searchButtonClicked()
@@ -26,10 +28,6 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
 
     def booksClicked(self):
         self.books_clicked.emit()
-        # from classes.bookSearch import Booksearch
-        # booksWindow = Booksearch()
-        # widget.addWidget(booksWindow)
-        # widget.setCurrentIndex(widget.currentIndex() - 1)
 
     def labelClicked(self, visitor):
         visitor_id, visitor_name, date, books_id = visitor[0:]
@@ -96,8 +94,6 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
     def returnBookClicked(self, visitor_id, book_id, visitor):
         returnBook(visitor_id, book_id)
         self.searchButtonClicked()
-
-
 
     def searchButtonClicked(self):
         self.scrollAreaWidgetContents.deleteLater()
