@@ -1,7 +1,7 @@
 
 from PyQt6 import QtWidgets, QtCore
 from design.login_design import Ui_Login
-from database import search_worker
+from database import searchWorker
 
 class LoginWindow(QtWidgets.QWidget, QtCore.QObject, Ui_Login):
     login_successful = QtCore.pyqtSignal()
@@ -23,7 +23,7 @@ class LoginWindow(QtWidgets.QWidget, QtCore.QObject, Ui_Login):
         from classes.newWorker import NewWorker
         login = self.login_input.text().strip()
         password = self.password_input.text().strip()
-        worker = search_worker(login, password)
+        worker = searchWorker(login, password)
         has_errors = False
 
         if login == '':

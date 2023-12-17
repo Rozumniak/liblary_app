@@ -2,7 +2,7 @@ from functools import partial
 
 from PyQt6 import QtWidgets, QtCore
 from design.visitors_design import Ui_Visitorssearch
-from database import search_by_id, returnBook, search_visitor
+from database import searchById, returnBook, searchVisitor
 
 
 class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
@@ -55,7 +55,7 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
             self.labels_layout.addWidget(label_text)
             books_id_split = str(books_id).split(',')
             for book_id in books_id_split:
-                book = search_by_id(book_id)
+                book = searchById(book_id)
                 for book_tuple in book:
                     book_id, author, title, genre, available = book_tuple
 
@@ -97,7 +97,7 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
 
     def searchButtonClicked(self):
         self.scrollAreaWidgetContents.deleteLater()
-        visitor = search_visitor(self.name.text())
+        visitor = searchVisitor(self.name.text())
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 929, 499))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")

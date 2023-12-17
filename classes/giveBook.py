@@ -1,6 +1,6 @@
 from PyQt6 import QtWidgets, QtCore
 from design.giveBook_design import Ui_giveBook
-from database import searchVisitorById, give_book_to_visitor
+from database import searchVisitorById, giveBookToVisitor
 
 class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
     def __init__(self, book_id):
@@ -95,7 +95,7 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
     def giveBook(self):
         visitor = searchVisitorById(self.id_field.text())
         if visitor:
-            bookGived = give_book_to_visitor(self.id_field.text(), self.book_id)
+            bookGived = giveBookToVisitor(self.id_field.text(), self.book_id)
             if bookGived:
                 self.text_label.setText("Книгу видано")
                 self.text_label.setStyleSheet("background-color: rgb(164, 201, 255);"

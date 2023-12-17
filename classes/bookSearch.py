@@ -2,7 +2,7 @@ from PyQt6 import QtWidgets, QtCore
 from design.booksearch_design import Ui_Booksearch
 
 
-from database import get_unique_genres, search_by_genre, search_by_title, search_by_author
+from database import getUniqueGenres, searchByGenre, searchByTitle, searchByAuthor
 
 class Booksearch(QtWidgets.QWidget, QtCore.QObject, Ui_Booksearch):
     visitors_clicked = QtCore.pyqtSignal()
@@ -13,7 +13,7 @@ class Booksearch(QtWidgets.QWidget, QtCore.QObject, Ui_Booksearch):
         self.books_button.setCheckable(True)
         self.books_button.setChecked(True)
         self.title_radio.setChecked(True)
-        genres = get_unique_genres()
+        genres = getUniqueGenres()
         self.genre_combo.addItems(genres)
         self.genre_combo.currentIndexChanged.connect(self.genre_search)
         self.search_button.clicked.connect(self.search_button_clicked)
@@ -33,7 +33,7 @@ class Booksearch(QtWidgets.QWidget, QtCore.QObject, Ui_Booksearch):
         self.scrollAreaWidgetContents.deleteLater()
 
         selected_genre = self.genre_combo.currentText()
-        books = search_by_genre(self.genre_combo.currentText())
+        books = searchByGenre(self.genre_combo.currentText())
 
 
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
@@ -91,7 +91,7 @@ class Booksearch(QtWidgets.QWidget, QtCore.QObject, Ui_Booksearch):
     def search_by_title(self):
         self.scrollAreaWidgetContents.deleteLater()
         self.title = self.search_input.text()
-        books = search_by_title(self.title)
+        books = searchByTitle(self.title)
 
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 929, 499))
@@ -145,7 +145,7 @@ class Booksearch(QtWidgets.QWidget, QtCore.QObject, Ui_Booksearch):
     def search_by_author(self):
         self.scrollAreaWidgetContents.deleteLater()
         self.author = self.search_input.text()
-        books = search_by_author(self.author)
+        books = searchByAuthor(self.author)
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 929, 499))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")

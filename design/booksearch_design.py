@@ -7,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+import os
 
 
 class Ui_Booksearch(object):
@@ -96,7 +97,9 @@ class Ui_Booksearch(object):
         self.label = QtWidgets.QLabel(parent=Booksearch)
         self.label.setGeometry(QtCore.QRect(30, 30, 120, 120))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("logo.png"))
+
+        self.label.setPixmap(QtGui.QPixmap(os.path.join(os.path.dirname(__file__), "logo.png")))
+
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 

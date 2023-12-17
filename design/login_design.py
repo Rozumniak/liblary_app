@@ -40,7 +40,6 @@ class Ui_Login(object):
         self.password_issue.setGeometry(QtCore.QRect(180, 370, 200, 35))
         self.password_issue.setStyleSheet("color: red;\n"
 "font: 12pt \"Arial\";")
-        self.password_issue.setObjectName("password_issue")
         self.pushButton = QtWidgets.QPushButton(parent=Login)
         self.pushButton.setGeometry(QtCore.QRect(115, 480, 150, 42))
         self.pushButton.setStyleSheet("border-radius: 10px;\n"

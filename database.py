@@ -100,33 +100,33 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS books (
 # connection_library.commit()
 
 
-def search_by_author(author):
+def searchByAuthor(author):
     author = author.capitalize()
     cursor.execute('SELECT * FROM books WHERE author LIKE ?', ('%' + author + '%',))
     books = cursor.fetchall()
     return books
 
 
-def search_by_id(id):
+def searchById(id):
     cursor.execute('SELECT * FROM books WHERE book_id = ?', (id,))
     book = cursor.fetchall()
     return book
 
 
-def search_by_title(title):
+def searchByTitle(title):
     title = title.capitalize()
     cursor.execute('SELECT * FROM books WHERE book_title LIKE ?', ('%' + title + '%',))
     books = cursor.fetchall() or False
     return books
 
 
-def search_by_genre(genre):
+def searchByGenre(genre):
     cursor.execute('SELECT * FROM books WHERE genre = ?', (genre,))
     books = cursor.fetchall()
     return books
 
 
-def get_unique_genres():
+def getUniqueGenres():
     cursor.execute('SELECT DISTINCT genre FROM books')
     genres = [genre[0] for genre in cursor.fetchall()]
     return genres
@@ -158,7 +158,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
 # connection_library.commit()
 
 
-def search_worker(login, password):
+def searchWorker(login, password):
     login = login.lower()
     cursor.execute('SELECT * FROM workers WHERE login = ? AND password = ?',(login, password))
     worker = cursor.fetchall() or False
@@ -171,7 +171,7 @@ def addNewWorker(name, title, login, password):
     cursor.execute('INSERT INTO workers (worker_name, job_title, login, password) VALUES (?,?,?,?)',
                    (name, title, login, password,))
     connection_library.commit()
-    newWorker = search_worker(login, password)
+    newWorker = searchWorker(login, password)
     return newWorker
 
 
@@ -186,17 +186,17 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS visitors (
 
 
 # visitors_list = [
-#     ('Розумняк Руслан', '10.11.2022', '1,2,3'),
-#     ('Розумняк Антон', '10.11.2022', ''),
-#     ('Розумняк Сергей', '10.11.2022', '1,2,3,4'),
+#     ('Розумняк Руслан', '10.11.2022', 1,2,3),
+#     ('Розумняк Антон', '10.11.2022', 0),
+#     ('Розумняк Сергей', '10.11.2022', 1,2,3,4),
 # ]
-#
-#
+
+
 # cursor.executemany('INSERT OR IGNORE INTO visitors (visitor_name, date, books_id) VALUES (?, ?, ?)', visitors_list)
 # connection_library.commit()
-# connection_library.close()
 
-def search_visitor(name):
+
+def searchVisitor(name):
     name = name.capitalize()
     cursor.execute('SELECT * FROM visitors WHERE visitor_name LIKE ?',('%' + name + '%',))
     visitor = cursor.fetchall() or False
@@ -216,8 +216,8 @@ def addVisitor(secondName, firstName, date):
     visitor = connection_library.commit() or False
     return visitor
 
-def give_book_to_visitor(visitor_id, book_id):
-    givenBook = search_by_id(book_id)
+def giveBookToVisitor(visitor_id, book_id):
+    givenBook = searchById(book_id)
     if givenBook[0][4] != 0:
         cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
         current_books = cursor.fetchone()
@@ -231,12 +231,12 @@ def give_book_to_visitor(visitor_id, book_id):
                 cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
                 connection_library.commit()
 
-                book = search_by_id(book_id)
+                book = searchById(book_id)
                 book_count = book[0][4] - 1
 
                 cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
                 connection_library.commit()
-                print(search_by_id(book_id))
+                print(searchById(book_id))
 
                 return True
             else:
@@ -245,12 +245,12 @@ def give_book_to_visitor(visitor_id, book_id):
             cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (book_id, visitor_id))
             connection_library.commit()
 
-            book = search_by_id(book_id)
+            book = searchById(book_id)
             book_count = book[0][4] - 1
 
             cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
             connection_library.commit()
-            print(search_by_id(book_id))
+            print(searchById(book_id))
 
             return True
 
@@ -263,7 +263,7 @@ def returnBook(visitor_id, book_id):
     cursor.execute('SELECT * FROM visitors WHERE visitor_id = ?', (visitor_id,))
     current_visitor = cursor.fetchone()
 
-    book = search_by_id(book_id)
+    book = searchById(book_id)
     book_count = book[0][4] + 1
 
     cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
