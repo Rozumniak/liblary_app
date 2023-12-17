@@ -11,6 +11,7 @@ class VisitorsSearch(QtWidgets.QMainWindow, QtCore.QObject, Ui_Visitorssearch):
         super().__init__()
 
         self.setupUi(self)
+        self.setFixedSize(1110, 720)
         self.books_button.clicked.connect(self.booksClicked)
         self.register_button.clicked.connect(self.registerClicked)
         self.search_button.clicked.connect(self.searchButtonClicked)

@@ -9,7 +9,7 @@ class LoginWindow(QtWidgets.QWidget, QtCore.QObject, Ui_Login):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.setMinimumSize(380, 600)
+        self.setFixedSize(380, 600)
         self.pushButton.clicked.connect(self.buttonClicked)
         self.login_issue.hide()
         self.password_issue.hide()

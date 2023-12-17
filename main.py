@@ -9,7 +9,7 @@ class MainApplication(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.setStyleSheet("background-color: rgb(255, 255, 240);")
-        self.setMinimumSize(300, 600)
+        self.setFixedSize(380, 600)
         self.login_window = LoginWindow()
         self.book_search = Booksearch()
         self.visitors = VisitorsSearch()
@@ -42,6 +42,6 @@ if __name__ == '__main__':
     screen_height = QtGui.QGuiApplication.primaryScreen().geometry().height()
     widget_width = main_app.width()
     widget_height = main_app.height()
-    main_app.move(int((screen_width - widget_width) / 2)+100, int((screen_height - widget_height) / 2))
+    main_app.move(int((screen_width - widget_width) / 2), int((screen_height - widget_height) / 2))
     main_app.show()
     sys.exit(app.exec())

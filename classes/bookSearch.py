@@ -9,6 +9,7 @@ class Booksearch(QtWidgets.QWidget, QtCore.QObject, Ui_Booksearch):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.setFixedSize(1110, 720)
         self.visitors_button.clicked.connect(self.visitorsClicked)
         self.books_button.setCheckable(True)
         self.books_button.setChecked(True)
