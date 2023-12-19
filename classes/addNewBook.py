@@ -1,7 +1,6 @@
 from PyQt6 import QtWidgets, QtCore
 from design.new_book_design import Ui_NewBook
 from database import addNewBook
-
 class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
     def __init__(self):
         super().__init__()
@@ -12,18 +11,14 @@ class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
         self.title_issue.hide()
         self.genre_issue.hide()
         self.number_issue.hide()
-
     def backButtonClicked(self):
         self.close()
-
     def addNewBook(self):
         name = self.name.text().strip()
         title = self.title.text().strip()
         genre = self.genre.text().strip()
         number = self.number.text().strip()
-
         has_errors = False
-
         if name == '':
             self.name_issue.show()
             self.name_issue.setText("Поле пусте")

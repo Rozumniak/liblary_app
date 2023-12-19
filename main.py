@@ -1,10 +1,7 @@
-
 from classes.loginWindow import LoginWindow
 from classes.bookSearch import Booksearch
 from classes.visitors import VisitorsSearch
-
 from PyQt6 import QtWidgets, QtGui
-
 class MainApplication(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -13,27 +10,20 @@ class MainApplication(QtWidgets.QWidget):
         self.login_window = LoginWindow()
         self.book_search = Booksearch()
         self.visitors = VisitorsSearch()
-
         self.login_window.login_successful.connect(self.show_book_search)
         self.book_search.visitors_clicked.connect(self.show_visitor_search)
         self.visitors.books_clicked.connect(self.show_book_search)
         self.layout = QtWidgets.QHBoxLayout(self)
         self.layout.addWidget(self.login_window)
-
-
         self.book_search.hide()
         self.visitors.hide()
-
     def show_book_search(self):
         self.book_search.show()
         self.visitors.close()
         self.close()
-
     def show_visitor_search(self):
         self.visitors.show()
         self.book_search.close()
-
-
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)

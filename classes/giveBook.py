@@ -1,7 +1,6 @@
 from PyQt6 import QtWidgets, QtCore
 from design.giveBook_design import Ui_giveBook
 from database import searchVisitorById, giveBookToVisitor
-
 class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
     def __init__(self, book_id):
         super().__init__()
@@ -12,8 +11,6 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
         self.backgroundLayout = QtWidgets.QVBoxLayout(self.background)
         self.text_label = QtWidgets.QLabel()
         self.id_issue.hide()
-
-
         self.text_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.backgroundLayout.addWidget(self.text_label)
     def keyPressEvent(self, event):
@@ -23,7 +20,6 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
             visitor = searchVisitorById(self.id_field.text())
             id = self.id_field.text().strip()
             has_errors = False
-
             if id == '':
                 self.id_issue.show()
                 self.id_issue.setText("Поле пусте")
@@ -33,7 +29,6 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
                                         "background-color: white;\n"
                                         "")
                 has_errors = True
-
             elif any(char.isalpha() for char in str(id)):
                 self.id_issue.show()
                 self.id_issue.setText("Введіть цифри")
@@ -50,7 +45,6 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
                                         "border: 2px solid rgb(164, 201, 255);\n"
                                         "background-color: white;\n"
                                         "")
-
             if has_errors:
                 self.update()
             else:
@@ -86,12 +80,7 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
                                                   "border-radius: 10px;"
                                                   "padding: 3px;"
                                                   "font: 14pt \"Arial\";")
-
-
                 self.backgroundLayout.update()
-
-
-
     def giveBook(self):
         visitor = searchVisitorById(self.id_field.text())
         if visitor:

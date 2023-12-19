@@ -1,26 +1,20 @@
 from design.new_visitor_design import Ui_NewVisitor
 from PyQt6 import QtWidgets, QtCore
 from database import addVisitor
-
 class NewVisitor(QtWidgets.QWidget, QtCore.QObject, Ui_NewVisitor):
     def __init__(self):
         super().__init__()
-
         self.setupUi(self)
         self.back_button.clicked.connect(self.backClicked)
         self.register_button.clicked.connect(self.registerClicked)
         self.secondName_issue.hide()
         self.firstName_issue.hide()
-
     def backClicked(self):
         self.close()
-
     def registerClicked(self):
         secondName = self.secondName.text().strip()
         firstName = self.firstName.text().strip()
-
         has_errors = False
-
         if secondName == '':
             self.secondName_issue.show()
             self.secondName_issue.setText("Поле пусте")

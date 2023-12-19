@@ -1,8 +1,6 @@
 from PyQt6 import QtWidgets, QtCore
 from design.new_worker_design import Ui_NewWorker
 from database import addNewWorker
-
-
 class NewWorker(QtWidgets.QWidget, QtCore.QObject, Ui_NewWorker):
     def __init__(self):
         super().__init__()
@@ -21,9 +19,7 @@ class NewWorker(QtWidgets.QWidget, QtCore.QObject, Ui_NewWorker):
         title_text = self.job_title.text().strip()
         login_text = self.login.text().strip()
         password_text = self.password.text().strip()
-
         has_errors = False
-
         if name_text == '':
             self.name_issue.show()
             self.name_issue.setText("Поле пусте")
@@ -125,7 +121,5 @@ class NewWorker(QtWidgets.QWidget, QtCore.QObject, Ui_NewWorker):
                 msg_box.setText("Не додано нового працівника")
                 msg_box.setWindowTitle("Інфо")
                 msg_box.exec()
-
-
     def backButtonClicked(self):
         self.close()

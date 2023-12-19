@@ -1,9 +1,6 @@
 import sqlite3
-
 connection_library = sqlite3.connect('library.db')
 cursor = connection_library.cursor()
-
-
 # cursor.execute('''DROP TABLE books''')
 cursor.execute('''CREATE TABLE IF NOT EXISTS books (
                     book_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -11,7 +8,6 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS books (
                     book_title TEXT NOT NULL,
                     genre TEXT NOT NULL,
                     available INTEGER)''')
-
 # books_list = [
 #     ('Тарас Шевченко', 'Кобзар', 'Поезія', 5),
 #     ('Тарас Шевченко', 'Гайдамаки', 'Історична література', 8),
@@ -98,39 +94,28 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS books (
 # cursor.executemany('INSERT OR IGNORE INTO books (author, book_title, genre, available) VALUES (?, ?, ?, ?)', books_list)
 #
 # connection_library.commit()
-
-
 def searchByAuthor(author):
     author = author.capitalize()
     cursor.execute('SELECT * FROM books WHERE author LIKE ?', ('%' + author + '%',))
     books = cursor.fetchall()
     return books
-
-
 def searchById(id):
     cursor.execute('SELECT * FROM books WHERE book_id = ?', (id,))
     book = cursor.fetchall()
     return book
-
-
 def searchByTitle(title):
     title = title.capitalize()
     cursor.execute('SELECT * FROM books WHERE book_title LIKE ?', ('%' + title + '%',))
     books = cursor.fetchall() or False
     return books
-
-
 def searchByGenre(genre):
     cursor.execute('SELECT * FROM books WHERE genre = ?', (genre,))
     books = cursor.fetchall()
     return books
-
-
 def getUniqueGenres():
     cursor.execute('SELECT DISTINCT genre FROM books')
     genres = [genre[0] for genre in cursor.fetchall()]
     return genres
-
 def addNewBook(name, title, genre, number):
     name = name.capitalize()
     title = title.capitalize()
@@ -138,10 +123,7 @@ def addNewBook(name, title, genre, number):
     cursor.execute('INSERT INTO books (author, book_title, genre, available) VALUES (?,?,?,?)', (name, title, genre, number,))
     connection_library.commit()
     return True
-
-
 # cursor.execute('''DROP TABLE workers''')
-
 cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
                     worker_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     worker_name TEXT NOT NULL,
@@ -156,14 +138,11 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS workers (
 # ]
 # cursor.executemany('INSERT OR IGNORE INTO workers (worker_name, job_title, login, password) VALUES (?, ?, ?, ?)', workers_list)
 # connection_library.commit()
-
-
 def searchWorker(login, password):
     login = login.lower()
     cursor.execute('SELECT * FROM workers WHERE login = ? AND password = ?',(login, password))
     worker = cursor.fetchall() or False
     return worker
-
 def addNewWorker(name, title, login, password):
     name = name.capitalize()
     title = title.capitalize()
@@ -173,40 +152,28 @@ def addNewWorker(name, title, login, password):
     connection_library.commit()
     newWorker = searchWorker(login, password)
     return newWorker
-
-
-
 # cursor.execute('''DROP TABLE visitors''')
-
 cursor.execute('''CREATE TABLE IF NOT EXISTS visitors (
                     visitor_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     visitor_name TEXT NOT NULL,
                     date TEXT NOT NULL,
                     books_id INTEGER NULL)''')
-
-
 # visitors_list = [
 #     ('Розумняк Руслан', '10.11.2022', 1,2,3),
 #     ('Розумняк Антон', '10.11.2022', 0),
 #     ('Розумняк Сергей', '10.11.2022', 1,2,3,4),
 # ]
-
-
 # cursor.executemany('INSERT OR IGNORE INTO visitors (visitor_name, date, books_id) VALUES (?, ?, ?)', visitors_list)
 # connection_library.commit()
-
-
 def searchVisitor(name):
     name = name.capitalize()
     cursor.execute('SELECT * FROM visitors WHERE visitor_name LIKE ?',('%' + name + '%',))
     visitor = cursor.fetchall() or False
     return visitor
-
 def searchVisitorById(id):
     cursor.execute('SELECT * FROM visitors WHERE visitor_id = ?', (id,))
     visitor = cursor.fetchone() or False
     return visitor
-
 def addVisitor(secondName, firstName, date):
     secondName = secondName.capitalize()
     firstName = firstName.capitalize()
@@ -215,75 +182,57 @@ def addVisitor(secondName, firstName, date):
     cursor.execute('INSERT INTO visitors (visitor_name, date, books_id) VALUES (?,?,?)',(name, date, null_book_id,))
     visitor = connection_library.commit() or False
     return visitor
-
 def giveBookToVisitor(visitor_id, book_id):
     givenBook = searchById(book_id)
     if givenBook[0][4] != 0:
         cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
         current_books = cursor.fetchone()
-
         if current_books[0] !=0:
             current_books_list = [str(current_books[0])]  # Перероблює у список одним елементом
             if str(book_id) not in current_books_list:
                 current_books_list.append(str(book_id))
                 updated_books = ','.join(current_books_list)
-
                 cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
                 connection_library.commit()
-
                 book = searchById(book_id)
                 book_count = book[0][4] - 1
-
                 cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
                 connection_library.commit()
                 print(searchById(book_id))
-
                 return True
             else:
                 return False  # Книга вже записана на юзері
         elif current_books[0] == 0:
             cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (book_id, visitor_id))
             connection_library.commit()
-
             book = searchById(book_id)
             book_count = book[0][4] - 1
-
             cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
             connection_library.commit()
             print(searchById(book_id))
-
             return True
-
-
 # Метод для поверненя книг
 def returnBook(visitor_id, book_id):
     cursor.execute('SELECT books_id FROM visitors WHERE visitor_id = ?', (visitor_id,))
     current_books = cursor.fetchone()
-
     cursor.execute('SELECT * FROM visitors WHERE visitor_id = ?', (visitor_id,))
     current_visitor = cursor.fetchone()
-
     book = searchById(book_id)
     book_count = book[0][4] + 1
-
     cursor.execute('UPDATE books SET available = ? WHERE book_id = ?', (book_count, book_id))
     connection_library.commit()
-
     if current_books and current_books[0] != 0:
         current_books_list = str(current_books[0]).split(',')
         # Записуємо у БД кількість книг
         if str(book_id) in current_books_list:
             current_books_list.remove(str(book_id))
             updated_books = ','.join(current_books_list)
-
             cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (updated_books, visitor_id))
             connection_library.commit()
-
             # Якщо немає більше книг, записуємо число 0 у БД
             if not current_books_list:
                 cursor.execute('UPDATE visitors SET books_id = ? WHERE visitor_id = ?', (0, visitor_id))
                 connection_library.commit()
-
             return True and current_visitor  # Книга повернута
         else:
             return False  # Такої книги на відвідувачі нема
