@@ -2,9 +2,11 @@ from classes.loginWindow import LoginWindow
 from classes.bookSearch import Booksearch
 from classes.visitors import VisitorsSearch
 from PyQt6 import QtWidgets, QtGui
+import os
 class MainApplication(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
+        self.setWindowTitle("Library App")
         self.setStyleSheet("background-color: rgb(255, 255, 240);")
         self.setFixedSize(380, 600)
         self.login_window = LoginWindow()
@@ -27,6 +29,7 @@ class MainApplication(QtWidgets.QWidget):
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    app.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(__file__), "logo.ico")))
     main_app = MainApplication()
     screen_width = QtGui.QGuiApplication.primaryScreen().geometry().width()
     screen_height = QtGui.QGuiApplication.primaryScreen().geometry().height()

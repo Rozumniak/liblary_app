@@ -5,6 +5,7 @@ class GiveBook(QtWidgets.QWidget, QtCore.QObject, Ui_giveBook):
     def __init__(self, book_id):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle("Видати книгу")
         self.search_button.clicked.connect(self.searchVisitor)
         self.book_id = book_id[0]
         self.give_button.clicked.connect(self.giveBook)

@@ -5,6 +5,7 @@ class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle("Додати нову книгу")
         self.register_button.clicked.connect(self.addNewBook)
         self.back_button.clicked.connect(self.backButtonClicked)
         self.name_issue.hide()
@@ -48,15 +49,6 @@ class AddNewBook(QtWidgets.QWidget, QtCore.QObject, Ui_NewBook):
         if title == '':
             self.title_issue.show()
             self.title_issue.setText("Поле пусте")
-            self.title.setStyleSheet("border-radius: 10px;\n"
-                                         "font: 12pt \"Arial\";\n"
-                                         "border: 2px solid red;\n"
-                                         "background-color: white;\n"
-                                         "")
-            has_errors = True
-        elif any(char.isdigit() for char in str(title)):
-            self.title_issue.show()
-            self.title_issue.setText("Введені цифри")
             self.title.setStyleSheet("border-radius: 10px;\n"
                                          "font: 12pt \"Arial\";\n"
                                          "border: 2px solid red;\n"

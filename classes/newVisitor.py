@@ -5,6 +5,7 @@ class NewVisitor(QtWidgets.QWidget, QtCore.QObject, Ui_NewVisitor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle("Додати відвідувача")
         self.back_button.clicked.connect(self.backClicked)
         self.register_button.clicked.connect(self.registerClicked)
         self.secondName_issue.hide()

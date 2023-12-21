@@ -5,6 +5,7 @@ class NewWorker(QtWidgets.QWidget, QtCore.QObject, Ui_NewWorker):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle("Вікно Адміністратора")
         self.register_button.clicked.connect(self.newWorkerRegister)
         self.back_button.clicked.connect(self.backButtonClicked)
         self.name_issue.hide()
